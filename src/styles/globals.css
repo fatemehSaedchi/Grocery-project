@@ -2,4 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {}
+@layer components {
+
+    /*swiper slide*/
+    .swiper {
+        @apply w-full h-auto
+    }
+
+    .swiper-slide {
+        @apply bg-white flex justify-center items-center
+    }
+}
+
+
+/*header menu*/
+.menu {
+    transform: translateX(-150%);
+}
+
+.open {
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out;
+}
+
+
+/*accordian*/
+.accordion__body {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.accordion__body.open {
+    max-height: 500px;
+    transition: all 0.5s ease-in-out;
+}
+
+
+
+
+
+
+
