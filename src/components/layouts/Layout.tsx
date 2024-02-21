@@ -1,6 +1,6 @@
-import {Header} from "@/components/layouts/header/Header";
-import {Footer} from "@/components/layouts/footer/Footer";
+import {Footer} from "@/components/layouts/footer";
 import {ReactNode} from "react";
+import {Header} from "@/components/layouts/header";
 
 interface Props {
     children: ReactNode
