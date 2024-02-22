@@ -25,7 +25,7 @@ export function IconBox({icon, size = 22, color = "black", align, link, title, h
     }
 
     return (
-        <Link href={link ?? '#'} className={`${linkClassName}`}>
+        <Link href={link ?? '#'} className={`flex flex-row items-center ${linkClassName}`}>
             {
                 badge ?
                     <div className={'relative'}>
@@ -38,7 +38,7 @@ export function IconBox({icon, size = 22, color = "black", align, link, title, h
                     <i className={`${icon} text-[${size}px] text-${color} ${align}`}></i>
             }
 
-            {title && <p className={`${hideTitleOnMobile ? 'hidden sm:inline-block' : 'inline-block'} ${titleClassName}`}>{title}</p>}
+            {title && <p className={`${hideTitleOnMobile ? 'hidden sm:inline-block' : 'inline-block'} ${titleClassName} ml-2`}>{title}</p>}
         </Link>
 
     );

@@ -33,10 +33,10 @@ export function Header(props) {
                     <SearchForm/>
                     <ul className="flex gap-2 basis-1/2 lg:basis-1/4 justify-end items-center">
                         <li className={"flex gap-2 cursor-pointer"}>
-                            <IconBox icon={"fa-user"} link={"#"} title={"Account"} hideTitleOnMobile={true} titleClassName={"ml-2 text-Iteal-200"} linkClassName={"flex items-center"}/>
+                            <IconBox icon={"fa-user"} link={"#"} title={"Account"} hideTitleOnMobile={true} titleClassName={"text-Iteal-200"}/>
                         </li>
                         <li className={"flex gap-2 cursor-pointer"}>
-                            <IconBox icon={"fa-cart-shopping"} link={"#"} title={"Cart"} hideTitleOnMobile={true} badge={4} titleClassName={"ml-2 text-Iteal-200"} linkClassName={"flex items-center"}/>
+                            <IconBox icon={"fa-cart-shopping"} link={"#"} title={"Cart"} hideTitleOnMobile={true} badge={4} titleClassName={"text-Iteal-200"}/>
                         </li>
                     </ul>
                 </div>
