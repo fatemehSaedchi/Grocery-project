@@ -15,7 +15,7 @@ export function Menu(props) {
                              titleClassName={"white text-white font-bold ml-2"}/>
                     <IconBox icon={"fa-chevron-down"} size={24}/>
                 </div>
-                <div className="lg:rounded-lg lg:absolute lg:top-[53px] bg-white mt-2 lg:mt-0">
+                <div className="hidden lg:rounded-lg lg:absolute lg:top-[53px] bg-white mt-2 lg:mt-0">
                     <div
                         className="flex flex-wrap lg:items-center gap-2 lg:gap-4 lg:w-[493px] h-auto lg:rounded-lg lg:border lg:border-primary-50 lg:p-6">
 

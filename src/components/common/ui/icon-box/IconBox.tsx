@@ -4,8 +4,6 @@ import Link from "next/link";
 interface Props {
     icon: string;
     size?: number;
-    color?: string;
-    align?: string;
     link?: string;
     title?: string;
     hideTitleOnMobile?: boolean;
@@ -17,7 +15,7 @@ interface Props {
 
 
 
-export function IconBox({icon, size = 22, color = "black", align, link, title, hideTitleOnMobile = false, badge = 0, titleClassName = '', path = 0, linkClassName=''} :Props) {
+export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false, badge = 0, titleClassName = '', path = 0, linkClassName=''} :Props) {
 
     let span=[]
     for (let i=1 ; i<= path; i++){
@@ -30,12 +28,12 @@ export function IconBox({icon, size = 22, color = "black", align, link, title, h
                 badge ?
                     <div className={'relative'}>
                         <span className={'absolute -top-[10x] -right-[10x] w-[20px] bg-primary-300 rounded-full flex justify-center items-center text-sm'}>{badge}</span>
-                      <i className={`${icon} text-[${size}px] text-${color} ${align} ${linkClassName}`}>
+                      <i className={`${icon} text-[${size}px] ${linkClassName}`}>
                             {span}
                       </i>
                     </div>
                     :
-                    <i className={`${icon} text-[${size}px] text-${color} ${align}`}></i>
+                    <i className={`${icon} text-[${size}px]`}></i>
             }
 
             {title && <p className={`${hideTitleOnMobile ? 'hidden sm:inline-block' : 'inline-block'} ${titleClassName} ml-2`}>{title}</p>}

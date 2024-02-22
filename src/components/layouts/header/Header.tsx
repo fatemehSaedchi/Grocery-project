@@ -4,6 +4,7 @@ import {Logo} from "@/components/common/ui/logo";
 import {IconBox} from "@/components/common/ui/icon-box";
 import {SearchForm} from "@/components/layouts/header/search-form/SearchForm";
 import {Menu} from "@/components/layouts/header/menu";
+import Link from "next/link";
 
 export function Header(props) {
     // TODO replace i tags with IconBox component
@@ -22,9 +23,9 @@ export function Header(props) {
                         <div className="menu absolute top-0 left-0 w-4/5 lg:w-full h-screen lg:h-full z-[9999] bg-white lg:bg-transparent rounded-tr-3xl rounded-br-3xl lg:translate-x-0 lg:flex justify-between items-start lg:relative">
                             <Menu/>
                             <div className="hidden lg:flex lg:flex-row lg:basis-1/4 lg:justify-end lg:items-center">
-                                <IconBox icon={"fa-headset"} size={22} color={"Iteel-200"} align={"self-end"}/>
+                                <IconBox icon={"icon-headset self-end text-Iteel-200"} size={22}/>
                                 <div className="flex flex-col items-center ml-2">
-                                    <p className="text-xl font-bold text-primary-300">1900 - 8888</p>
+                                    <Link href={"tel:19008888"} className="text-xl font-bold text-primary-300">1900 - 8888</Link>
                                     <p className="text-xs text-Igray-300">24/7 Support Center</p>
                                 </div>
                             </div>
