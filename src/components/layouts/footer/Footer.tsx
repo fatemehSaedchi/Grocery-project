@@ -6,7 +6,7 @@ import {IconBox} from "@/components/common/ui/icon-box";
 
 export function Footer(props) {
     return (
-        <footer>
+        <footer className={"container px-4 mx-auto"}>
             <div className="w-full h-52 xl:h-[382px] bg-no-repeat bg-primary-100 rounded-xl flex relative">
                 <div className="w-[60%] h-full text-primary-400 pl-8 lg:pl-16 pt-5 flex flex-col sm:justify-center">
                     <p className="text-xl lg:leading-10 xl:leading-[50px] sm:text-[22px] md:text-[28px] lg:text-[38px] xl:text-[50px] font-bold">

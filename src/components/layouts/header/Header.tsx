@@ -10,7 +10,7 @@ export function Header(props) {
     // TODO replace i tags with IconBox component
     return (
         <>
-            <header className="header relative">
+            <header className={"container px-4 mx-auto relative mb-10"}>
                 <div className="lg:h-40 bg-white flex flex-wrap justify-between items-center ">
                     <Logo/>
                     <div
