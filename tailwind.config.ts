@@ -81,11 +81,6 @@ const config: Config = {
         "10": "10px",
       },
 
-      backgroundImage:{
-        "delivery-bg" : "url('../img/delivery section/3389452 1.png')",
-        "hero-bg": "url('../img/hero/heroBg1.png')"
-      },
-
       fontFamily:{
         "quicksand": ["Quicksand","sans"],
       },
