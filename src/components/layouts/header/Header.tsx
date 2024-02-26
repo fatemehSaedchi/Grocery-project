@@ -1,12 +1,11 @@
 import React from 'react';
-import {ImageView} from "@/components/common/image-view";
-import {Logo} from "@/components/common/ui/logo";
-import {IconBox} from "@/components/common/ui/icon-box";
-import {SearchForm} from "@/components/layouts/header/search-form/SearchForm";
-import {Menu} from "@/components/layouts/header/menu";
+import {Logo} from "@/components";
+import {IconBox} from "@/components";
+import {SearchForm} from "@/components/layouts";
+import {Menu} from "@/components/layouts";
 import Link from "next/link";
 
-export function Header(props) {
+export function Header() {
     // TODO replace i tags with IconBox component
     return (
         <>

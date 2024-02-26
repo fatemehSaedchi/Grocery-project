@@ -1,16 +1,16 @@
 import {ImageView} from "@/components/common/image-view";
 import {IconBox} from "@/components/common/ui/icon-box";
 import React from "react";
-import {browsCategoryMock} from "@/mock/browsCategory"
+import {browsCategoriesMock} from "@/mock/browsCategory"
 import {menuMock} from "@/mock/menu";
 import Link from "next/link";
 
-export function Menu(props) {
+export function Menu() {
     return (
         <>
             <div className="pt-5 lg:pt-0 lg:basis-1/4 relative">
                 <div
-                    className="bg-primary-300 inline-block w-64 py-3 flex items-center justify-center rounded cursor-pointer">
+                    className="bg-primary-300 w-64 py-3 flex items-center justify-center rounded cursor-pointer">
                     <IconBox icon={'icon-apps'} title={'Browse All Categories'} size={24} link={'#'}
                              titleClassName={"white text-white font-bold ml-2"}/>
                     <IconBox icon={"fa-chevron-down"} size={24}/>
@@ -20,7 +20,7 @@ export function Menu(props) {
                         className="flex flex-wrap lg:items-center gap-2 lg:gap-4 lg:w-[493px] h-auto lg:rounded-lg lg:border lg:border-primary-50 lg:p-6">
 
                         {
-                            browsCategoryMock.map((item, index) => {
+                            browsCategoriesMock.map((item, index) => {
                                 return (
                                     <IconBox key={index} icon={item.icon} size={30} title={item.title} link={item.link}
                                              titleClassName={"font-medium text-sm"}
@@ -33,7 +33,7 @@ export function Menu(props) {
                         <a href="#"
                            className="hidden lg:flex justify-center items-center gap-2 w-52 h-12 mx-auto mt-4">
                             <button
-                                className="rounded-full border border-2 border-primary-300 flex items-center w-6 h-6 justify-center text-center text-primary-300 font-bold text-lg ">
+                                className="rounded-full border-2 border-primary-300 flex items-center w-6 h-6 justify-center text-center text-primary-300 font-bold text-lg ">
                                 +
                             </button>
                             <p className="text-Igray-300 font-bold">More Category</p>

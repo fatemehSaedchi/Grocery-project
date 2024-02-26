@@ -1,4 +1,4 @@
-export const menuMock=[
+export const menuMock = [
     {
         title: "Hot Deals",
         icon: "icon-flame",
@@ -18,5 +18,5 @@ export const menuMock=[
         title: "Vegetables",
         icon: "",
         link: "#"
-    },
+    }
 ]
