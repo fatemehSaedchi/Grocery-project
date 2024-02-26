@@ -82,8 +82,9 @@ const config: Config = {
       },
 
       fontFamily:{
-        "quicksand": ["Quicksand","sans"],
+        lato: ['var(--font-lato)']
       },
+
     },
   },
   plugins: [],
