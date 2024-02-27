@@ -1,19 +1,19 @@
 import React from "react";
 import {IconBox} from "@/components/common/ui/icon-box";
 
-export function SearchForm(props) {
+
+interface Props {
+    inputClassName?: string
+}
+export function SearchForm({inputClassName = ''}): React.JSX.Element {
     // TODO should implement form
     return (
         <>
-            <div className="basis-1/2 lg:basis-2/4 flex relative xs:mt-4 border border-primary-100 hover:border-primary-300">
-                <form action="#" name={"search-form"} className={"w-full flex items-center px-5"}>
-                    <input type="text" name={"search_text"} placeholder="Search for items"
-                           className="outline-none sm:block basis-3/4 h-12 text-sm"/>
-                    <button type="submit">
-                        <IconBox icon={"fa-magnifying-glass"} size={22} color={"Iteal-200"}/>
-                    </button>
-                </form>
-            </div>
+            <form name="search-form" action="#" method="post" className="flex items-center">
+                <input type="text" name="search_text" placeholder="Search for items" className={`text-xsmall text-gray-400 border-gray-300 w-full focus:outline-none ${inputClassName}`}/>
+                <button type="submit"><IconBox icon={'icon-search'}/></button>
+            </form>
+
         </>
     );
 }

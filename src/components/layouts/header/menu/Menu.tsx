@@ -8,42 +8,28 @@ import Link from "next/link";
 export function Menu() {
     return (
         <>
-            <div className="pt-5 lg:pt-0 lg:basis-1/4 relative">
-                <div
-                    className="bg-primary-300 w-64 py-3 flex items-center justify-center rounded cursor-pointer">
-                    <IconBox icon={'icon-apps'} title={'Browse All Categories'} size={24} link={'#'}
-                             titleClassName={"white text-white font-bold ml-2"}/>
-                    <IconBox icon={"fa-chevron-down"} size={24}/>
-                </div>
-                <div className="hidden lg:rounded-lg lg:absolute lg:top-[53px] bg-white mt-2 lg:mt-0">
-                    <div
-                        className="flex flex-wrap lg:items-center gap-2 lg:gap-4 lg:w-[493px] h-auto lg:rounded-lg lg:border lg:border-primary-50 lg:p-6">
+            <div id="all_categories" className="flex relative cursor-pointer bg-green-200 gap-2.5 text-white px-4 py-3 rounded-[5px] items-center">
+                <IconBox icon={'icon-apps'} title={'Browse All Categories'} size={24} link={'#'} titleClassName={"text-medium"}/>
+                <IconBox icon={"icon-angle-small-down"} size={24}/>
+                <div id="all_categories_box" className="hidden absolute z-20 bg-white left-0 top-16 w-[500px] rounded-[5px] border-[1px] border-green-300 p-[30px] hover:cursor-default">
+                    <div id="all_cat_inner_box" className="flex flex-wrap justify-between gap-y-[15px]">
 
                         {
-                            browsCategoriesMock.map((item, index) => {
-                                return (
-                                    <IconBox key={index} icon={item.icon} size={30} title={item.title} link={item.link}
-                                             titleClassName={"font-medium text-sm"}
-                                             linkClassName={"gap-3 font-bold text-sm text-Iteal-200 lg:w-52 lg:h-[48px] lg:pl-6 lg:border lg:border-Igray-50 lg:hover:border-primary-50 lg:hover:shadow-shadow-2 rounded"}
-                                             path={item.iconPath}/>
-                                )
+                            browsCategoriesMock.map((item, index)=>{
+                                return <IconBox key={index} icon={item.icon} link={item.link} title={item.title} titleClassName={"text-heading-sm text-blue-300"} linkClassName={"flex items-center gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start pl-4 lg:hover:border-green-300 cursor-pointer"} path={item.iconPath}/>
+
                             })
                         }
 
-                        <a href="#"
-                           className="hidden lg:flex justify-center items-center gap-2 w-52 h-12 mx-auto mt-4">
-                            <button
-                                className="rounded-full border-2 border-primary-300 flex items-center w-6 h-6 justify-center text-center text-primary-300 font-bold text-lg ">
-                                +
-                            </button>
-                            <p className="text-Igray-300 font-bold">More Category</p>
-                        </a>
+                        <div id="more_categories" className="cursor-pointer flex gap-4 items-center justify-center w-full mt-[17px]">
+                            <i className="icon-add text-[24px]"></i>
+                            <div className="text-heading-sm text-blue-300">More Categories</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <nav id={'main-menu'}>
-                <ul className="flex flex-col lg:flex-row justify-center items-center gap-5 lg:basis-2/4 lg:h-full font-bold lg:font-normal text-Iteal-200">
-
+            <nav id="main_menu">
+                <ul className="flex flex-col lg:flex-row items-start lg:items-center text-heading6 lg:text-heading-sm 2xl:text-heading6 gap-[32px] mt-[32px] lg:mt-0 lg:gap-3 xl:gap-5 2xl:gap-10">
                     {
                         menuMock.map((item, index)=>{
                             return(
@@ -56,7 +42,6 @@ export function Menu() {
                             )
                         })
                     }
-
                 </ul>
             </nav>
         </>

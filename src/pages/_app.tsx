@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <style jsx global>{`
               html {
                   font-family: ${quicksand.style.fontFamily}, sans-serif;
-                  --font-lato : ${lato.style.fontFamily}, sans-serif
+                  --font-lato : ${lato.style.fontFamily}, sans-serif   
                   
               }
           `}</style>
