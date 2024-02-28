@@ -3,12 +3,11 @@ export const popularProducts = [
         title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
         image: '/assets/images/products/mango.png',
         category: "Hodo Foods",
-        rate: 4.0,
+        rate: 2.0,
         weight: 500,
         unit: 'gram',
         price: 5000,
         sale_price: 200,
-        label: 'Hot',
 
     },
     {
@@ -31,7 +30,7 @@ export const popularProducts = [
         unit: 'gram',
         price: 3000,
         sale_price: 200,
-        label: 'Hot',
+        label: 'sale',
     },
     {
         title: "Foster Farms Takeout Crispy Classic Buffalo Wings",
@@ -48,22 +47,20 @@ export const popularProducts = [
         title: "Blue Diamond Almonds Lightly Salted Vegetables",
         image: '/assets/images/products/lemon.png',
         category: "Hodo Foods",
-        rate: 4.0,
+        rate: 5.0,
         weight: 500,
         unit: 'gram',
         price: 3000,
-        sale_price: 200,
-        label: 'Hot',
+
     },
     {
         title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
         image: '/assets/images/products/cucumber.png',
         category: "Hodo Foods",
-        rate: 4.0,
+        rate: 3.0,
         weight: 500,
         unit: 'gram',
         price: 3000,
         sale_price: 200,
-        label: 'Hot',
     }
 ];
