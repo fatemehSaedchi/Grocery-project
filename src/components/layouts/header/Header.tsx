@@ -6,7 +6,6 @@ import {Menu} from "@/components/layouts";
 import Link from "next/link";
 
 export function Header() {
-    // TODO replace i tags with IconBox component
     return (
         <>
             <header className="mb-[33px]">

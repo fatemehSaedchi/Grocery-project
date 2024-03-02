@@ -12,15 +12,16 @@ export function Footer() {
     return (
         <footer className="container mb-[68px]">
             <div className="mb-[68px]">
-                <div className="rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-hero-pattern bg-[rgba(59,128,126,.2)] bg-opacity-20 bg-cover bg-top bg-no-repeat flex justify-between items-center mt-[38px] relative">
+                <div className="rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-hero-pattern bg-[rgba(59,128,126,.2)] bg-opacity-20 bg-cover bg-top bg-no-repeat flex justify-between items-center mt-[38px] relative max-w-screen-2xl">
                     <div className="min-h-[160px] pl-3 pt-3 sm:pl-4 sm:pt-4 md:pl-6 md:pt-6 lg:pl-10 lg:py-10 xl:pl-14 xl:py-14 2xl:py-[72px] 2xl:pl-[72px]">
-                        <h2 className="max-w-[60%] text-heading5 sm:text-heading4 md:text-heading3 lg:text-heading2 tracking-[-0.04%] text-green-700">
+                        <h2 className="max-w-[60%] text-heading5 sm:text-heading4 md:text-heading3 lg:text-heading2 tracking-[-0.04%] text-green-700 pt-7 md:pt-0">
                             Stay home & get your daily needs from our shop</h2>
                         <div className="font-lato text-large tracking-[-0.04%] text-[#2B3D34] mt-8 hidden lg:block">Start
                             Your Daily Sopping with Nest Mart
                         </div>
                     </div>
-                    <ImageView src={"/assets/images/Screenshot (76).png"} alt={'footer banner'} width={587} height={331} classname={"absolute bottom-0 right-0 sm:h-full h-3/4"}/>
+                    <ImageView src={"/assets/images/deliverMan.png"} alt={'footer banner'} width={700} height={603} classname={"lg:hidden absolute bottom-0 right-0 h-[90%] w-2/5 max-w-64"}/>
+                    <ImageView src={"/assets/images/Screenshot (76).png"} alt={'footer banner'} width={587} height={331} classname={"hidden lg:inline-block absolute bottom-0 right-0 sm:h-full h-3/4 w-2/4 max-w-lg max-h-[331px]"}/>
                 </div>
             </div>
             <div className="flex flex-col md:flex-row justify-between flex-wrap gap-[16px] divide-y-2 md:divide-y-0 mb-[70px]">

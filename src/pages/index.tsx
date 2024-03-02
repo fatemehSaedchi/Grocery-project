@@ -1,16 +1,17 @@
 import {Section} from "@/components/layouts";
 import {
     Banner,
-    BestSellersSlider,
+    BestSellersSlider, DealsOfTheDaysSlider,
     FeaturedCategory,
     IconBox,
     MiniProductSlider,
-    SimpleProductSlider
+    SimpleProductSlider, TopsAndTrendingSlider
 } from "@/components";
 import {popularProducts} from "@/mock/PopularProducts";
 import {popularFruits} from "@/mock/PopularFruits";
 import {BestSellers} from "@/mock/BestSellers";
 import Link from "next/link";
+import {DealsOfTheDaysMock} from "@/mock/DealsOfTheDays";
 
 
 export default function Home() {
@@ -44,8 +45,7 @@ export default function Home() {
                             size={24}/>
                     </div>
                 </div>
-                <SimpleProductSlider sliderData={popularProducts} prevEl={".swiper-nav-left"}
-                                     nextEl={".swiper-nav-right"}/>
+                <SimpleProductSlider sliderData={popularProducts} prevEl={".swiper-nav-left"} nextEl={".swiper-nav-right"}/>
             </Section>
             <Section>
                 <div className="flex justify-between mb-[50px]">
@@ -59,13 +59,11 @@ export default function Home() {
                             size={24}/>
                     </div>
                 </div>
-                <SimpleProductSlider sliderData={popularFruits} prevEl={".swiper-nav-left2"}
-                                     nextEl={".swiper-nav-right2"}/>
+                <SimpleProductSlider sliderData={popularFruits} prevEl={".swiper-nav-left2"} nextEl={".swiper-nav-right2"}/>
             </Section>
             <Section>
                 <div className="flex justify-between mb-[50px]">
-                    <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Best
-                        Sellers</h2>
+                    <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Best Sellers</h2>
                 </div>
                 <div className="flex gap-[24px]">
                     <div className="bg-[url('/assets/images/bg-leaf.png')] bg-no-repeat bg-bottom bg-[#3BB77E] rounded-[10px] shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] p-12 pt-[38px] self-stretch flex-col justify-between max-w-[370px] hidden xl:flex">
@@ -77,6 +75,19 @@ export default function Home() {
                     </div>
                     <BestSellersSlider sliderData={BestSellers}/>
                 </div>
+            </Section>
+            <Section>
+                <div className="flex justify-between items-center mb-[50px]">
+                    <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals
+                        Of The Days</h2>
+                    <Link className="flex items-center" href="#">All Deals
+                        <IconBox icon={'icon-angle-small-right'} size={24}/>
+                    </Link>
+                </div>
+                <DealsOfTheDaysSlider sliderData={DealsOfTheDaysMock}/>
+            </Section>
+            <Section>
+                <TopsAndTrendingSlider/>
             </Section>
         </>
     );

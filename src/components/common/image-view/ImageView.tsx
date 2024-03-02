@@ -11,7 +11,7 @@ interface Props {
 }
 export function ImageView({src,alt,width,height,classname=''}: Props) {
     return (
-        <Image src={src} alt={alt} width={width} height={height} classname={classname}/>
+        <Image src={src} alt={alt} width={width} height={height} className={classname}/>
     );
 }
 
