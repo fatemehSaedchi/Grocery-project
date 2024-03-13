@@ -37,8 +37,6 @@ export function SimpleProductCard({data}: Props) {
             <ImageView src={data.image} alt={'product'} width={210} height={168}
                        classname={"m-auto w-full aspect-[3/2] mb-[28px]"}/>
 
-            {/*start*/}
-
             <div className="flex flex-col gap-2">
                 <div className="text-gray-500 text-xsmall">{data.category}</div>
                 <Link href={'#'}><h3
