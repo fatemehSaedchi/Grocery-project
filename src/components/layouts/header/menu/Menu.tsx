@@ -1,5 +1,5 @@
 import {IconBox} from "@/components/common/ui/icon-box";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, MouseEvent} from "react";
 import Link from "next/link";
 import {EntityType, MenuItemType} from "@/types";
 import {useMenu} from "@/hooks/use-menu";
@@ -11,12 +11,12 @@ export function Menu() {
     const {data: mainMenuItems} = useMenu({position:'main_menu'})
     const {data: browsCategoryItem} = useMenu({position:'brows-category'})
 
-    const categoryBtnClickHandler = (e)=>{
+    const categoryBtnClickHandler = (e: MouseEvent)=>{
         e.stopPropagation()
         setShowCategoryMenu(prevState => !prevState)
     }
 
-    const categoryBodyClickHandler =(e)=>{
+    const categoryBodyClickHandler =(e: MouseEvent)=>{
         e.stopPropagation()
     }
 
