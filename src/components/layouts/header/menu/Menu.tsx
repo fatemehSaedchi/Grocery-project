@@ -1,23 +1,43 @@
 import {IconBox} from "@/components/common/ui/icon-box";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {EntityType, MenuItemType} from "@/types";
 import {useMenu} from "@/hooks/use-menu";
 
 export function Menu() {
 
+    const [showCategoryMenu , setShowCategoryMenu] = useState<boolean>(false)
+
     const {data: mainMenuItems} = useMenu({position:'main_menu'})
     const {data: browsCategoryItem} = useMenu({position:'brows-category'})
 
+    const categoryBtnClickHandler = (e)=>{
+        e.stopPropagation()
+        setShowCategoryMenu(prevState => !prevState)
+    }
+
+    const categoryBodyClickHandler =(e)=>{
+        e.stopPropagation()
+    }
+
+    useEffect(()=>{
+        const clickHandler = ()=> {
+            setShowCategoryMenu(false);
+        }
+        document.addEventListener('click',clickHandler)
+        return ()=>{
+            document.removeEventListener('click',clickHandler)
+        }
+    },[])
+
     return (
         <>
-            <div id="all_categories"
-                 className="flex relative cursor-pointer bg-green-200 gap-2.5 text-white px-4 py-3 rounded-[5px] items-center">
-                <IconBox icon={'icon-apps'} title={'Browse All Categories'} size={24} link={'#'}
-                         titleClassName={"text-medium"}/>
-                <IconBox icon={"icon-angle-small-down"} size={24}/>
-                <div id="all_categories_box"
-                     className=" absolute z-20 bg-white left-0 top-16 w-[500px] rounded-[5px] border-[1px] border-green-300 p-[30px] hover:cursor-default">
+            <div className={'relative'}>
+                <div onClick={categoryBtnClickHandler} className="flex cursor-pointer bg-green-200 gap-2.5 text-white px-4 py-3 rounded-[5px] items-center">
+                    <IconBox icon={'icon-apps'} title={'Browse All Categories'} size={24} link={'#'} titleClassName={"text-medium"}/>
+                    <IconBox icon={"icon-angle-small-down"} size={24}/>
+                </div>
+                <div onClick={categoryBodyClickHandler} className={`${showCategoryMenu ? 'flex' : 'hidden' } absolute z-20 bg-white left-0 top-16 w-[500px] rounded-[5px] border-[1px] border-green-300 p-[30px] hover:cursor-default`}>
                     <div id="all_cat_inner_box" className="flex flex-wrap justify-between gap-y-[15px]">
                         {
                             browsCategoryItem &&

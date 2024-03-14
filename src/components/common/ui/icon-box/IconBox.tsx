@@ -29,10 +29,10 @@ export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false
                     badge ?
                         <div className={'relative'}>
                             <span className="absolute -top-[10px] -right-[10px] w-[20px] h-[20px] bg-green-200 rounded-full flex justify-center items-center text-white text-xsmall">{badge}</span>
-                            <i className={`${icon} text-[${size}px] ${linkClassName}`}>{span}</i>
+                            <i style={{fontSize: `${size}px`}} className={`${icon}`}>{span}</i>
                         </div>
                         :
-                        <i className={`${icon} text-[${size}px]`}></i>
+                        <i style={{fontSize: `${size}px`}} className={`${icon}`}></i>
                 }
 
                 {title && <p className={`${hideTitleOnMobile ? 'hidden sm:inline-block' : 'inline-block'} ${titleClassName} ml-2`}>{title}</p>}
@@ -46,10 +46,10 @@ export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false
                     badge ?
                         <div className={'relative'}>
                             <span className="absolute -top-[10px] -right-[10px] w-[20px] h-[20px] bg-green-200 rounded-full flex justify-center items-center text-white text-xsmall">{badge}</span>
-                            <i className={`${icon} text-[${size}px] ${linkClassName}`}>{span}</i>
+                            <i style={{fontSize: `${size}px`}} className={`${icon}`}>{span}</i>
                         </div>
                         :
-                        <i className={`${icon} text-[${size}px]`}></i>
+                        <i style={{fontSize: `${size}px`}} className={`${icon}`}>{span}</i>
                 }
 
                 {title && <p className={`${hideTitleOnMobile ? 'hidden sm:inline-block' : 'inline-block'} ${titleClassName} ml-2`}>{title}</p>}
