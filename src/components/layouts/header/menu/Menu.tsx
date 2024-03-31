@@ -3,6 +3,7 @@ import React, {useEffect, useState, MouseEvent} from "react";
 import Link from "next/link";
 import {EntityType, MenuItemType} from "@/types";
 import {useMenu} from "@/hooks/use-menu";
+import {useOverlay} from "@/hooks/use-overlay";
 
 export function Menu() {
 
@@ -10,6 +11,12 @@ export function Menu() {
 
     const {data: mainMenuItems} = useMenu({position:'main_menu'})
     const {data: browsCategoryItem} = useMenu({position:'brows-category'})
+
+    useOverlay({
+        onClick: ()=>{
+            setShowCategoryMenu(false)
+        }
+    })
 
     const categoryBtnClickHandler = (e: MouseEvent)=>{
         e.stopPropagation()
@@ -20,24 +27,14 @@ export function Menu() {
         e.stopPropagation()
     }
 
-    useEffect(()=>{
-        const clickHandler = ()=> {
-            setShowCategoryMenu(false);
-        }
-        document.addEventListener('click',clickHandler)
-        return ()=>{
-            document.removeEventListener('click',clickHandler)
-        }
-    },[])
-
     return (
         <>
             <div className={'relative'}>
-                <div onClick={categoryBtnClickHandler} className="flex cursor-pointer bg-green-200 gap-2.5 text-white px-4 py-3 rounded-[5px] items-center">
+                <div onClick={categoryBtnClickHandler} className="inline-flex cursor-pointer bg-green-200 gap-2.5 text-white px-4 py-3 rounded-[5px] items-center">
                     <IconBox icon={'icon-apps'} title={'Browse All Categories'} size={24} link={'#'} titleClassName={"text-medium"}/>
                     <IconBox icon={"icon-angle-small-down"} size={24}/>
                 </div>
-                <div onClick={categoryBodyClickHandler} className={`${showCategoryMenu ? 'flex' : 'hidden' } absolute z-20 bg-white left-0 top-16 w-[500px] rounded-[5px] border-[1px] border-green-300 p-[30px] hover:cursor-default`}>
+                <div onClick={categoryBodyClickHandler} className={`${showCategoryMenu ? 'flex' : 'hidden' } lg:absolute z-20 bg-white left-0 top-16 lg:w-[500px] rounded-[5px] lg:border-[1px] lg:border-green-300 pt-[30px] lg:p-[30px] hover:cursor-default`}>
                     <div id="all_cat_inner_box" className="flex flex-wrap justify-between gap-y-[15px]">
                         {
                             browsCategoryItem &&
@@ -45,7 +42,7 @@ export function Menu() {
                                 return(
                                     <IconBox key={index} icon={item.attributes.icon_name} link={item.attributes.link} title={item.attributes.title}
                                              titleClassName={"text-heading-sm text-blue-300"}
-                                             linkClassName={"flex items-center gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start pl-4 lg:hover:border-green-300 cursor-pointer"}
+                                             linkClassName={"flex items-center gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-full lg:basis-[calc(50%-8px)] justify-start lg:pl-4 lg:hover:border-green-300 cursor-pointer"}
                                              path={item.attributes.icon_path}/>
                                 )
                             })
@@ -62,7 +59,7 @@ export function Menu() {
                         {/*}*/}
 
                         <div id="more_categories"
-                             className="cursor-pointer flex gap-4 items-center justify-center w-full mt-[17px]">
+                             className="cursor-pointer flex gap-4 items-center lg:justify-center w-full mt-[17px]">
                             <i className="icon-add text-[24px]"></i>
                             <div className="text-heading-sm text-blue-300">More Categories</div>
                         </div>

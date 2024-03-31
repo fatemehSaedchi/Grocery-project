@@ -1,8 +1,6 @@
 import {Autoplay, Navigation} from "swiper/modules";
-import {miniProductSlider} from "@/mock/miniProductSlider";
 import {Swiper, SwiperSlide} from "swiper/react";
-import Link from "next/link";
-import {IconBox, SimpleProductCard} from "@/components";
+import {SimpleProductCard} from "@/components";
 
 interface Props {
     sliderData: Array<any>,
