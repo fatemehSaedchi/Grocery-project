@@ -15,8 +15,14 @@ import {ProductType} from "@/types/api/Product";
 
 export default function Home() {
 
-    const {data: popularProductsData} = useQuery<ApiResponseType<ProductType>>({queryKey:[getAllProductsApiCall.name], queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_popular: true}}) })
-    console.log("popular: ", popularProductsData)
+    const {data: popularProductsData} = useQuery<ApiResponseType<ProductType>>({
+        queryKey:[getAllProductsApiCall.name , 'popular_product'],
+        queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_popular: true}}) })
+
+    const {data: popularFruitsData} = useQuery<ApiResponseType<ProductType>>({
+        queryKey:[getAllProductsApiCall.name, 'popular_fruit'],
+        queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_popular_fruit: true}}) })
+
 
     return (
         <>
@@ -50,20 +56,21 @@ export default function Home() {
                 </div>
                 { popularProductsData && <SimpleProductSlider sliderData={popularProductsData.data} prevEl={".swiper-nav-left"} nextEl={".swiper-nav-right"}/> }
             </Section>
-            {/*<Section>*/}
-            {/*    <div className="flex justify-between mb-[50px]">*/}
-            {/*        <h2 className="text-heading3 text-blue-300">Popular Fruits</h2>*/}
-            {/*        <div className="flex items-center gap-3">*/}
-            {/*            <IconBox*/}
-            {/*                icon={"swiper-nav-left2 icon-angle-small-left cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"}*/}
-            {/*                size={24}/>*/}
-            {/*            <IconBox*/}
-            {/*                icon={"swiper-nav-right2 icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"}*/}
-            {/*                size={24}/>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*    <SimpleProductSlider sliderData={popularFruits} prevEl={".swiper-nav-left2"} nextEl={".swiper-nav-right2"}/>*/}
-            {/*</Section>*/}
+            <Section>
+                <div className="flex justify-between mb-[50px]">
+                    <h2 className="text-heading3 text-blue-300">Popular Fruits</h2>
+                    <div className="flex items-center gap-3">
+                        <IconBox
+                            icon={"swiper-nav-left2 icon-angle-small-left cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"}
+                            size={24}/>
+                        <IconBox
+                            icon={"swiper-nav-right2 icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white"}
+                            size={24}/>
+                    </div>
+                </div>
+                {popularFruitsData && <SimpleProductSlider sliderData={popularFruitsData.data} prevEl={".swiper-nav-left2"} nextEl={".swiper-nav-right2"}/>}
+            </Section>
+
             {/*<Section>*/}
             {/*    <div className="flex justify-between mb-[50px]">*/}
             {/*        <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Best Sellers</h2>*/}
@@ -79,6 +86,7 @@ export default function Home() {
             {/*        <BestSellersSlider sliderData={BestSellers}/>*/}
             {/*    </div>*/}
             {/*</Section>*/}
+
             {/*<Section>*/}
             {/*    <div className="flex justify-between items-center mb-[50px]">*/}
             {/*        <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals*/}
