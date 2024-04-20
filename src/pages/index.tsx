@@ -8,25 +8,33 @@ import {
     SimpleProductSlider, TopsAndTrendingSlider
 } from "@/components";
 import {getAllProductsApiCall} from "@/api/Product";
-import {useQuery} from "@tanstack/react-query";
+import {dehydrate, QueryClient, useQuery} from "@tanstack/react-query";
 import {ApiResponseType} from "@/types";
 import {ProductType} from "@/types/api/Product";
 import Link from "next/link";
+import {getMenuApiCall} from "@/api/menu";
 
 
 export default function Home() {
 
     const {data: popularProductsData} = useQuery<ApiResponseType<ProductType>>({
         queryKey:[getAllProductsApiCall.name , 'popular_product'],
-        queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_popular: true}}) })
+        queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_popular: {$eq: true}}}),
+        // initialData: props.products
+    })
 
     const {data: popularFruitsData} = useQuery<ApiResponseType<ProductType>>({
         queryKey:[getAllProductsApiCall.name, 'popular_fruit'],
-        queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_popular_fruit: true}}) })
+        queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_popular_fruit: {$eq: true}}})
+    })
 
     const {data: bestSellersData} = useQuery<ApiResponseType<ProductType>>({
         queryKey:[getAllProductsApiCall.name, 'best-sellers'],
-        queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_best_seller: true}}) })
+        queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_best_seller: {$eq: true}}}) })
+
+    const {data: dealsOfDayData} = useQuery<ApiResponseType<ProductType>>({
+        queryKey:[getAllProductsApiCall.name, 'deals-of-day'],
+        queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{discount_expire_date: {$notNull: true}}}) })
 
 
     return (
@@ -75,7 +83,6 @@ export default function Home() {
                 </div>
                 {popularFruitsData && <SimpleProductSlider sliderData={popularFruitsData.data} prevEl={".swiper-nav-left2"} nextEl={".swiper-nav-right2"}/>}
             </Section>
-
             <Section>
                 <div className="flex justify-between mb-[50px]">
                     <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Best Sellers</h2>
@@ -91,20 +98,49 @@ export default function Home() {
                     { bestSellersData && <div className={'flex-grow'}><BestSellersSlider sliderData={bestSellersData.data}/></div>}
                 </div>
             </Section>
-
-            {/*<Section>*/}
-            {/*    <div className="flex justify-between items-center mb-[50px]">*/}
-            {/*        <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals*/}
-            {/*            Of The Days</h2>*/}
-            {/*        <Link className="flex items-center" href="#">All Deals*/}
-            {/*            <IconBox icon={'icon-angle-small-right'} size={24}/>*/}
-            {/*        </Link>*/}
-            {/*    </div>*/}
-            {/*    <DealsOfTheDaysSlider sliderData={DealsOfTheDaysMock}/>*/}
-            {/*</Section>*/}
+            <Section>
+                <div className="flex justify-between items-center mb-[50px]">
+                    <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals
+                        Of The Days</h2>
+                    <Link className="flex items-center" href="#">All Deals
+                        <IconBox icon={'icon-angle-small-right'} size={24}/>
+                    </Link>
+                </div>
+                {dealsOfDayData && <DealsOfTheDaysSlider sliderData={dealsOfDayData.data}/>}
+            </Section>
             <Section>
                 <TopsAndTrendingSlider/>
             </Section>
         </>
     );
 }
+
+
+// SSR by InitialData
+// export async function getServerSideProps() {
+//     const products = await getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_popular: {$eq: true}}})
+//     return { props: { products } }
+// }
+
+
+export async function getServerSideProps() {
+    const queryClient = new QueryClient()
+
+    await queryClient.prefetchQuery({
+        queryKey: [getMenuApiCall.name],
+        queryFn: getMenuApiCall,
+    })
+
+    await queryClient.prefetchQuery({
+        queryKey: [getAllProductsApiCall.name , 'popular_product'],
+        queryFn: ()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{is_popular: {$eq: true}}})
+    })
+
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+        },
+    }
+}
+
+
