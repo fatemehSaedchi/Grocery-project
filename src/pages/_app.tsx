@@ -10,6 +10,7 @@ import {Lato, Quicksand} from "next/font/google";
 import {HydrationBoundary, QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {ToastContainer} from "react-toastify";
 import React from "react";
+import {BasketContextProvider} from "@/store/BasketContext";
 
 
 const quicksand = Quicksand({
@@ -48,13 +49,15 @@ export default function App({Component, pageProps}: AppProps) {
                 }
             `}</style>
             <QueryClientProvider client={queryClient}>
-                <HydrationBoundary state={pageProps.dehydratedState}>
-                    <Layout>
-                        <Component {...pageProps}/>
-                        <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false}
-                                        theme={"light"} position={"top-right"}/>
-                    </Layout>
-                </HydrationBoundary>
+               <BasketContextProvider>
+                   <HydrationBoundary state={pageProps.dehydratedState}>
+                       <Layout>
+                           <Component {...pageProps}/>
+                           <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false}
+                                           theme={"light"} position={"top-right"}/>
+                       </Layout>
+                   </HydrationBoundary>
+               </BasketContextProvider>
             </QueryClientProvider>
         </>
     )
