@@ -3,7 +3,7 @@ import {toast} from "react-toastify";
 
 
 const ApiClient = axios.create({
-    baseURL: "http://nest.navaxcollege.com/api",
+    baseURL: "https://nest.navaxcollege.com/api",
     timeout: 0
 })
 
