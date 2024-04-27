@@ -1,13 +1,39 @@
-import React from 'react';
+import React, {useState, MouseEvent} from 'react';
 import {ImageView} from "@/components";
 import Link from "next/link";
-
 import {IconBox} from "@/components";
 import {Logo} from "@/components";
+import {useOverlay} from "@/hooks/use-overlay";
 
 export function Footer() {
+    const [showCompanyMenu, setShowCompanyMenu] = useState(false)
+    const [showInformationMenu, setShowInformationMenu] = useState(false)
 
-    //TODO fix mobile menu
+    useOverlay({
+        onClick : ()=>{
+            setShowCompanyMenu(false)
+        }
+    })
+
+    useOverlay({
+        onClick : ()=>{
+            setShowInformationMenu(false)
+        }
+    })
+    const companyBtnHAndler = (e: MouseEvent)=>{
+        e.stopPropagation()
+        setShowCompanyMenu((prevState)=> !prevState)
+    }
+    const companyBodyHandler = (e: MouseEvent)=>{
+        e.stopPropagation()
+    }
+    const informationBtnHAndler = (e: MouseEvent)=>{
+        e.stopPropagation()
+        setShowInformationMenu((prevState)=> !prevState)
+    }
+    const informationBodyHAndler = (e: MouseEvent)=>{
+        e.stopPropagation()
+    }
 
     return (
         <footer className="container mb-[68px]">
@@ -29,34 +55,34 @@ export function Footer() {
                     <Logo/>
                     <div className="font-lato text-medium mt-4 lg:mt-6">Pellentesque posuere orci lobortis</div>
                     <div className="flex items-start gap-2.5 mt-4 lg:mt-6">
-                        <IconBox icon={"icon-marker-brand"}/>
+                        <IconBox icon={"icon-marker-brand text-green-200"}/>
                         <div className="font-lato text-medium text-blue-300">
                             <span className="font-bold">Address:</span> 5171 W Campbell Ave undefined Kent, Utah 53127 United States
                         </div>
                     </div>
                     <div className="flex items-start gap-2.5 mt-2 lg:mt-3">
-                        <IconBox icon={"icon-headset text-brand1"}/>
+                        <IconBox icon={"icon-headset text-green-200"}/>
                         <div className="font-lato text-medium text-blue-300">
                             <span  className="font-bold">Call Us:</span> (+91) - 540-025-124553
                         </div>
                     </div>
                     <div className="flex items-start gap-2.5 mt-2 lg:mt-3">
-                        <IconBox icon={"icon-paper-plane text-brand1"} size={24}/>
+                        <IconBox icon={"icon-paper-plane text-green-200"} size={24}/>
                         <div className="font-lato text-medium text-blue-300"><span
                             className="font-bold">Email:</span> contact@nestmart.com
                         </div>
                     </div>
                     <div className="flex items-start gap-2.5 mt-2 lg:mt-3">
-                        <IconBox icon={"icon-time-fast text-brand1"}/>
+                        <IconBox icon={"icon-time-fast text-green-200"}/>
                         <div className="font-lato text-medium text-blue-300"><span
                             className="font-bold">Hours:</span> 10:00 - 18:00, Mon - Sat
                         </div>
                     </div>
                 </div>
                 <div className="pt-4 md:pt-0">
-                    <div className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle">Company
-                        <IconBox icon={"icon-down-dark inline-block sm:hidden"} size={24}/></div>
-                    <ul className="hidden md:flex flex-col gap-2.5">
+                    <div className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle" onClick={companyBtnHAndler}>Company
+                        <IconBox icon={"icon-down-dark inline-block md:hidden"} size={24}/></div>
+                    <ul className={`${showCompanyMenu ? 'flex' : 'hidden'} md:flex flex-col gap-2.5`} onClick={companyBodyHandler}>
                         <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><Link href="#">About Us</Link></li>
                         <li className="font-lato text-medium text-blue-300"><Link href="#">Delivery Information</Link></li>
                         <li className="font-lato text-medium text-blue-300"><Link href="#">Privacy Policy</Link></li>
@@ -67,9 +93,9 @@ export function Footer() {
                     </ul>
                 </div>
                 <div className="pt-4 md:pt-0">
-                    <div className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle">Information
-                        <IconBox icon={"icon-down-dark inline-block sm:hidden"} size={24}/></div>
-                    <ul className="hidden md:flex flex-col gap-2.5">
+                    <div className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle" onClick={informationBtnHAndler}>Information
+                        <IconBox icon={"icon-down-dark inline-block md:hidden"} size={24}/></div>
+                    <ul className={`${showInformationMenu ? 'flex' : 'hidden'} md:flex flex-col gap-2.5`}>
                         <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><Link href="#">Search Terms</Link>
                         </li>
                         <li className="font-lato text-medium text-blue-300"><Link href="#">Advanced Search</Link></li>
