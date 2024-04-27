@@ -57,7 +57,7 @@ export function DealsOfTheDaysCard({data}: Props) {
                     </div>
                 </div>
                 <div className="bg-white mt-2.5 px-8 pt-6 pb-4 rounded-[10px] shadow-c-xs">
-                    <div className="text-heading-sm text-blue-300">{data.attributes.title}
+                    <div className="text-heading-sm text-blue-300 h-9 overflow-hidden">{data.attributes.title}
                     </div>
                     <div className="flex w-[106px] justify-between h-4 items-center mt-1">
                         <div className="flex gap-4">

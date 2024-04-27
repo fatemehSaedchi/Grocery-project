@@ -34,13 +34,15 @@ import {ProductType} from "@/types/api/Product";
 interface Props {
     populate?: Array<'thumbnail'|'categories'|'gallery'>;
     filters?: {}
+    sort?: Array<string>
 }
-export  function getAllProductsApiCall({populate,filters = {}}: Props): Promise<ApiResponseType<ProductType>> {
+export  function getAllProductsApiCall({populate,filters = {}, sort = []}: Props): Promise<ApiResponseType<ProductType>> {
 
     return apiClient.get('/products',{
         params:{
             populate: populate?.join(','),
-            filters: filters
+            filters: filters,
+            sort: sort
         }
     })
 }
