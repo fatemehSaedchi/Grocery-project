@@ -34,9 +34,9 @@ const config: Config = {
           }
         ],
         display2: [
-          '72px',
+          '70px',
           {
-            lineHeight: '96px',
+            lineHeight: '86px',
             letterSpacing: '0',
             fontWeight: '700'
           }
