@@ -3,6 +3,9 @@ import Link from "next/link";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
 import {formatNumberWithCommas} from "@/utils/formatNumber";
+import {ProductCardBtn} from "@/components/common/ProductCardBtn";
+import {useContext} from "react";
+import basketContext from "@/store/BasketContext";
 
 interface Props {
     data: EntityType<ProductType>
@@ -27,6 +30,9 @@ interface Props {
 export function SimpleProductCard({data}: Props) {
     const sellPrice = formatNumberWithCommas({number: data.attributes.sell_price})
     const price = formatNumberWithCommas({number: data.attributes.price})
+    const basket = useContext(basketContext)
+    const currentProductInBasket = basket.getItem(data.id)
+
     return (
         <div className="group border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-2 sm:p-4 xl:pb-5 lg:pt-[65px] h-full">
             { data.attributes.label && <Badge badge={data.attributes.label} sale_price={data.attributes.sell_price} price={data.attributes.price}/>}
@@ -74,11 +80,24 @@ export function SimpleProductCard({data}: Props) {
                         </div>
                         <div className="mt-2.5 font-lato text-blue-300 text-xsmall">Sold: {data.attributes.sold}/{data.attributes.total}</div>
                         <div className="mt-[23px]">
-                            <button
-                                className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 px-2 py-2 lg:py-[14px]">
-                                <IconBox icon={"icon-shopping-cart"} size={22}/>
-                                <span className="text-heading-sm">Add To Card</span>
-                            </button>
+                            {
+                                currentProductInBasket ?
+                                    <button className="flex justify-between px-5 items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-yellow-100 py-2 lg:py-[14px]">
+                                        <div className="flex flex-col justify-between">
+                                            <IconBox icon={"up icon-angle-small-up"} size={10}
+                                                     onClick={() => basket.increaseItem(data.id)}/>
+                                            <IconBox icon={"down icon-angle-small-down"} size={10}
+                                                     onClick={() => basket.decreaseItem(data.id)}/>
+                                        </div>
+                                        {currentProductInBasket.quantity}
+                                    </button>
+                                    :
+                                    <button className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 px-2 py-2 lg:py-[14px]">
+                                        <IconBox title={'Add To Card'} titleClassName={'text-heading-sm'}
+                                                 icon={"icon-shopping-cart"} size={22}
+                                                 onClick={() => basket.addItem(data)}/>
+                                    </button>
+                            }
                         </div>
                     </>
                     :
@@ -95,21 +114,7 @@ export function SimpleProductCard({data}: Props) {
                                     <span className="text-heading5 text-green-200">${price}</span>
                             }
                         </div>
-                        <div className="add-product">
-                            <button
-                                className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">Adds
-                                +
-                            </button>
-                            <div
-                                className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                                <input type="number" value="1"
-                                       className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"/>
-                                <div className="flex flex-col justify-between">
-                                    <IconBox icon={"up icon-angle-small-up"} size={10}/>
-                                    <IconBox icon={"down icon-angle-small-down"} size={10}/>
-                                </div>
-                            </div>
-                        </div>
+                        <ProductCardBtn productData={data}/>
                     </div>
             }
         </div>

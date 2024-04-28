@@ -1,14 +1,16 @@
-import React, {useEffect, useState,MouseEvent} from 'react';
+import React, {useEffect, useState, MouseEvent, useContext} from 'react';
 import {Logo} from "@/components";
 import {IconBox} from "@/components";
 import {SearchForm} from "@/components/layouts";
 import {Menu} from "@/components/layouts";
 import Link from "next/link";
 import {useOverlay} from "@/hooks/use-overlay";
+import basketContext from "@/store/BasketContext";
 
 export function Header() {
 
     const[showMobileMenu, setShowMobileMenu] = useState<boolean>(false)
+    const basket = useContext(basketContext)
 
     useOverlay({
         onClick: () => {
@@ -54,7 +56,7 @@ export function Header() {
                             <div className="relative">
                                 <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}
                                          titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
-                                         hideTitleOnMobile={true} badge={4}/>
+                                         hideTitleOnMobile={true} badge={basket.basketItems.length}/>
                             </div>
                         </li>
                     </ul>

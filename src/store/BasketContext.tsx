@@ -6,7 +6,7 @@ interface props {
     children: ReactNode
 }
 
-interface ProductItems {
+interface ProductItem {
     productId: number,
     title: string,
     img?: string,
@@ -15,24 +15,26 @@ interface ProductItems {
 }
 
 export const BasketContext = createContext<{
-    basketItems: Array<ProductItems>
+    basketItems: Array<ProductItem>
     addItem: (product: EntityType<ProductType>)=> void
     increaseItem: (productId: number)=> void,
     decreaseItem: (productId: number)=> void,
-    deleteItem: (productId: number)=> void
+    deleteItem: (productId: number)=> void,
+    getItem: (productId: number)=> undefined | ProductItem
 }>({
     basketItems : [],
     addItem: (product: EntityType<ProductType>)=> {},
     increaseItem: (productId: number)=> {},
     decreaseItem: (productId: number)=> {},
-    deleteItem: (productId: number)=> {}
+    deleteItem: (productId: number)=> {},
+    getItem: (productId: number)=> undefined
 })
 
 export const BasketContextProvider = ({children}:props)=>{
-    const [basketItems, setBasketItems] = useState<Array<ProductItems>>([])
+    const [basketItems, setBasketItems] = useState<Array<ProductItem>>([])
 
     const addItemHandler = (product: EntityType<ProductType>)=> {
-        const newProduct: ProductItems = {
+        const newProduct: ProductItem = {
             productId: product.id,
             title: product.attributes.title,
             img: product.attributes.thumbnail?.data?.attributes.url,
@@ -42,6 +44,8 @@ export const BasketContextProvider = ({children}:props)=>{
         }
 
         setBasketItems(prevState => [...prevState, newProduct])
+
+        console.log("basketItems", basketItems)
     }
 
     const increaseItemHandler = (productId: number)=> {
@@ -62,7 +66,7 @@ export const BasketContextProvider = ({children}:props)=>{
         }else {
             const newBasket = basketItems.map((item)=>{
                 if (item.productId === productId){
-                    return {...item, quantity: item.quantity + 1}
+                    return {...item, quantity: item.quantity - 1}
                 }
                 return item
             })
@@ -76,8 +80,12 @@ export const BasketContextProvider = ({children}:props)=>{
         setBasketItems(newBasket)
     }
 
+    const getItemHandler = (productId: number) : ProductItem | undefined=>{
+        return basketItems.find((item)=> item.productId === productId)
+    }
+
     return(
-        <BasketContext.Provider value={{basketItems: basketItems, addItem: addItemHandler, increaseItem: increaseItemHandler, decreaseItem: decreaseItemHandler, deleteItem: deleteItemHandler}}>
+        <BasketContext.Provider value={{basketItems: basketItems, addItem: addItemHandler, increaseItem: increaseItemHandler, decreaseItem: decreaseItemHandler, deleteItem: deleteItemHandler, getItem: getItemHandler}}>
             {children}
         </BasketContext.Provider>
     )

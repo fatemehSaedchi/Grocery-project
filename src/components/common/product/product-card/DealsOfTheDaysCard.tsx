@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {timerHelper} from "@/utils/timer";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
+import {formatNumberWithCommas} from "@/utils/formatNumber";
+import {ProductCardBtn} from "@/components/common/ProductCardBtn";
 
 interface Props {
     data: EntityType<ProductType>
@@ -15,6 +17,9 @@ export function DealsOfTheDaysCard({data}: Props) {
         minutes: 0,
         seconds: 0,
     });
+
+    const price= formatNumberWithCommas({number: data.attributes.price})
+    const sell_price= formatNumberWithCommas({number: data.attributes.sell_price})
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -69,28 +74,14 @@ export function DealsOfTheDaysCard({data}: Props) {
                         {
                             data.attributes.sell_price ?
                                 <>
-                                    <span className="text-heading5 text-green-200">${data.attributes.sell_price}</span>
+                                    <span className="text-heading5 text-green-200">${sell_price}</span>
                                     <span
-                                        className="text-heading-sm line-through text-gray-500">${data.attributes.price}</span>
+                                        className="text-heading-sm line-through text-gray-500">${price}</span>
                                 </>
                                 :
-                                <span className="text-heading5 text-green-200">${data.attributes.price}</span>
+                                <span className="text-heading5 text-green-200">${price}</span>
                         }
-                        <div className="add-product">
-                            <button
-                                className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">Adds
-                                +
-                            </button>
-                            <div
-                                className="input-product__container hidden border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px]">
-                                <input type="number" value="1"
-                                       className="input-product h-[24px] w-[50px] border-0 focus:outline-none text-center"/>
-                                <div className="flex flex-col justify-between">
-                                    <i className="up icon-angle-small-up text-[10px]"></i>
-                                    <i className="down icon-angle-small-down text-[10px]"></i>
-                                </div>
-                            </div>
-                        </div>
+                        <ProductCardBtn productData={data}/>
                     </div>
                 </div>
             </div>
