@@ -1,4 +1,4 @@
-import React from "react";
+import React, {MouseEvent} from "react";
 import Link from "next/link";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
     titleClassName?: string;
     path?: number;
     linkClassName?: string
-    onClick?: () => void
+    onClick?: (e: MouseEvent) => void
 }
 
 export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false, badge = 0, titleClassName = '', path = 0, linkClassName='',onClick} :Props) {

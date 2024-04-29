@@ -14,7 +14,6 @@ import {ProductType} from "@/types/api/Product";
 import Link from "next/link";
 import {getMenuApiCall} from "@/api/menu";
 
-
 export default function Home() {
 
     const {data: popularProductsData} = useQuery<ApiResponseType<ProductType>>({

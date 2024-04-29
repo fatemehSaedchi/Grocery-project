@@ -31,8 +31,6 @@ export function ProductCardBtn({productData}: Props) {
                         +
                     </button>
             }
-
-
         </div>
     );
 }

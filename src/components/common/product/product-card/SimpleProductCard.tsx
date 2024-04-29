@@ -92,10 +92,9 @@ export function SimpleProductCard({data}: Props) {
                                         {currentProductInBasket.quantity}
                                     </button>
                                     :
-                                    <button className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 px-2 py-2 lg:py-[14px]">
+                                    <button onClick={() => basket.addItem(data)} className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 px-2 py-2 lg:py-[14px]">
                                         <IconBox title={'Add To Card'} titleClassName={'text-heading-sm'}
-                                                 icon={"icon-shopping-cart"} size={22}
-                                                 onClick={() => basket.addItem(data)}/>
+                                                 icon={"icon-shopping-cart"} size={22}/>
                                     </button>
                             }
                         </div>
