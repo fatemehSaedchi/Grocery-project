@@ -6,11 +6,14 @@ interface props {
     children: ReactNode
 }
 
-interface ProductItem {
+export interface ProductItem {
     productId: number,
     title: string,
     img?: string,
+    width?: number,
+    height?: number,
     price: number,
+    sell_price: number | undefined,
     quantity: number
 }
 
@@ -38,13 +41,15 @@ export const BasketContextProvider = ({children}:props)=>{
             productId: product.id,
             title: product.attributes.title,
             img: product.attributes.thumbnail?.data?.attributes.url,
+            width: product.attributes.thumbnail?.data?.attributes.width,
+            height: product.attributes.thumbnail?.data?.attributes.height,
             price: product.attributes.price,
+            sell_price: product.attributes.sell_price,
             quantity: 1
 
         }
 
         setBasketItems(prevState => [...prevState, newProduct])
-
         console.log("basketItems", basketItems)
     }
 
@@ -55,7 +60,6 @@ export const BasketContextProvider = ({children}:props)=>{
             }
             return item
         })
-
         setBasketItems(newBasket)
     }
 
@@ -70,7 +74,6 @@ export const BasketContextProvider = ({children}:props)=>{
                 }
                 return item
             })
-
             setBasketItems(newBasket)
         }
     }

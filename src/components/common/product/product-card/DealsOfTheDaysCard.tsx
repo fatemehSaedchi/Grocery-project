@@ -32,7 +32,7 @@ export function DealsOfTheDaysCard({data}: Props) {
     }, [])
 
     return (
-        <div className="relative h-[438px]">
+         <div className="relative h-[438px]">
             <ImageView src={data.attributes.thumbnail?.data?.attributes.url} alt={'product'} width={378} height={335} classname={"w-4/5 md:w-full mx-auto max-h-[335px]"}/>
             <div className="absolute z-[20] left-[50%] translate-x-[-50%] top-[153px]">
                 <div className="timer1 flex items-center gap-3 h-[60px]">

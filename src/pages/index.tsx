@@ -36,7 +36,6 @@ export default function Home() {
         queryKey:[getAllProductsApiCall.name, 'deals-of-day'],
         queryFn:()=> getAllProductsApiCall({populate:["categories","thumbnail"], filters:{discount_expire_date: {$notNull: true}}}) })
 
-
     return (
         <>
             <Section className={"mb-[75px]"}>

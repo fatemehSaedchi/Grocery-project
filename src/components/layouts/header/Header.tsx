@@ -6,15 +6,23 @@ import {Menu} from "@/components/layouts";
 import Link from "next/link";
 import {useOverlay} from "@/hooks/use-overlay";
 import basketContext from "@/store/BasketContext";
+import {BasketCard} from "@/components/common/product/product-card/BasketCard";
 
 export function Header() {
 
     const[showMobileMenu, setShowMobileMenu] = useState<boolean>(false)
+    const[showBasketCard, setShowBasketCard] = useState<boolean>(false)
     const basket = useContext(basketContext)
 
     useOverlay({
         onClick: () => {
             setShowMobileMenu(false)
+        }
+    })
+
+    useOverlay({
+        onClick:()=>{
+            setShowBasketCard (false)
         }
     })
 
@@ -24,6 +32,15 @@ export function Header() {
     }
 
     const menuBodyClickHandler = (e : MouseEvent)=>{
+        e.stopPropagation()
+    }
+
+    const basketCardHandler = (e: MouseEvent)=>{
+        e.stopPropagation()
+        setShowBasketCard ((prevState)=>!prevState)
+    }
+
+    const basketCardBodyHandler = (e: MouseEvent)=>{
         e.stopPropagation()
     }
 
@@ -54,9 +71,10 @@ export function Header() {
                         </li>
                         <li className="flex gap-2 cursor-pointer">
                             <div className="relative">
-                                <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}
+                                <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'}
                                          titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
-                                         hideTitleOnMobile={true} badge={basket.basketItems.length}/>
+                                         hideTitleOnMobile={true} badge={basket.basketItems.length} onClick={basketCardHandler}/>
+                                {showBasketCard && <BasketCard data={basket.basketItems} onClick={basketCardBodyHandler}/>}
                             </div>
                         </li>
                     </ul>
@@ -91,12 +109,13 @@ export function Header() {
                                          titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
                                          hideTitleOnMobile={true}/>
                             </li>
-                            <li className="flex gap-2 cursor-pointer">
+                            <li className="flex gap-2 cursor-pointer relative">
                                 <div className="relative">
-                                    <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}
+                                    <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'}
                                              titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
-                                             hideTitleOnMobile={true} badge={4}/>
+                                             hideTitleOnMobile={true} badge={basket.basketItems.length} onClick={basketCardHandler}/>
                                 </div>
+                                {showBasketCard && <BasketCard data={basket.basketItems} onClick={basketCardBodyHandler}/>}
                             </li>
                         </ul>
                     </div>

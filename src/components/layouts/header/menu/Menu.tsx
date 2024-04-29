@@ -1,5 +1,5 @@
 import {IconBox} from "@/components/common/ui/icon-box";
-import React, {useEffect, useState, MouseEvent} from "react";
+import React, {useState, MouseEvent} from "react";
 import Link from "next/link";
 import {EntityType, MenuItemType} from "@/types";
 import {useMenu} from "@/hooks/use-menu";
@@ -54,7 +54,6 @@ export function Menu() {
                         {/*                        titleClassName={"text-heading-sm text-blue-300"}*/}
                         {/*                        linkClassName={"flex items-center gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start pl-4 lg:hover:border-green-300 cursor-pointer"}*/}
                         {/*                        path={item.iconPath}/>*/}
-
                         {/*    })*/}
                         {/*}*/}
 

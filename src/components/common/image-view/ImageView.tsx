@@ -5,8 +5,8 @@ import Image from 'next/image'
 interface Props {
     src?: string | null ;
     alt:string;
-    width: number;
-    height: number;
+    width?: number | undefined;
+    height?: number | undefined;
     classname?: string
 }
 export function ImageView({src='',alt,width,height,classname=''}: Props) {
