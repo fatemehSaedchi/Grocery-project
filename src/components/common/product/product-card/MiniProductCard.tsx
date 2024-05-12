@@ -10,7 +10,6 @@ export function MiniProductCard({data}: Props) {
     const price = formatNumberWithCommas({number: data.attributes.price})
     const sell_price = formatNumberWithCommas({number: data.attributes.sell_price})
 
-    //Todo fix width and height problem
     return (
         <div className="flex gap-3 lg:gap-5">
             <ImageView classname={"w-[50px] h-[50px]"} src={data.attributes.thumbnail?.data?.attributes.url} alt={'product'} width={data.attributes.thumbnail?.data?.attributes.width} height={data.attributes.thumbnail?.data?.attributes.height}/>

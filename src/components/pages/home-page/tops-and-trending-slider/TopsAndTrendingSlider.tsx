@@ -8,7 +8,7 @@ import { InView } from 'react-intersection-observer'
 
 export function TopsAndTrendingSlider() {
 
-    const {data: topSellingData} = useQuery({queryKey: [getAllProductsApiCall.name, 'topSellingData'], queryFn:()=> getAllProductsApiCall({
+    const {data: topSellingData, refetch: topSellingDataRefetch} = useQuery({queryKey: [getAllProductsApiCall.name, 'topSellingData'], queryFn:()=> getAllProductsApiCall({
             populate: ["thumbnail"],
             filters:{ is_top_selling: {$eq: true}},
             pagination: {
@@ -16,11 +16,11 @@ export function TopsAndTrendingSlider() {
                 pageSize: 3
             }
         }),
-        enabled: false
+        enabled: true
     })
     // console.log("topSellingData", topSellingData)
 
-    const {data: TrendingProductsData} = useQuery({queryKey: [getAllProductsApiCall.name, 'TrendingProductsData'], queryFn:()=> getAllProductsApiCall({
+    const {data: TrendingProductsData,refetch: trendingProductsDataRefetch } = useQuery({queryKey: [getAllProductsApiCall.name, 'TrendingProductsData'], queryFn:()=> getAllProductsApiCall({
             populate: ["thumbnail"],
             filters:{ is_trending: {$eq: true}},
             pagination: {
@@ -28,11 +28,11 @@ export function TopsAndTrendingSlider() {
                 pageSize: 3
             }
         }),
-        enabled: false
+        enabled: true
     })
     // console.log("TrendingProductsData", TrendingProductsData)
 
-    const {data: RecentlyAddedData} = useQuery({queryKey: [getAllProductsApiCall.name, 'RecentlyAddedData'], queryFn:()=> getAllProductsApiCall({
+    const {data: RecentlyAddedData, refetch: recentlyAddedDataRefetch} = useQuery({queryKey: [getAllProductsApiCall.name, 'RecentlyAddedData'], queryFn:()=> getAllProductsApiCall({
             populate: ["thumbnail"],
             filters:{ is_popular: {$eq: true}},
             pagination: {
@@ -44,7 +44,7 @@ export function TopsAndTrendingSlider() {
     })
     // console.log("RecentlyAddedData", RecentlyAddedData)
 
-    const {data: topRatedData,refetch} = useQuery({queryKey: [getAllProductsApiCall.name, 'topRatedData'], queryFn:()=> getAllProductsApiCall({
+    const {data: topRatedData,refetch: topRatedDataRefetch} = useQuery({queryKey: [getAllProductsApiCall.name, 'topRatedData'], queryFn:()=> getAllProductsApiCall({
             populate: ["thumbnail"],
             sort: ["rate:desc"],
             pagination: {
@@ -54,7 +54,7 @@ export function TopsAndTrendingSlider() {
         }),
         enabled: false
     })
-    // console.log("topRatedData", topRatedData)
+    console.log("topRatedData", topRatedData)
 
     return (
         <Swiper
@@ -78,27 +78,27 @@ export function TopsAndTrendingSlider() {
             }}
         >
             <SwiperSlide>
-                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
-                {topSellingData && <ProductVerticalList title={'Top Selling'} data={topSellingData}/>}
+                <InView as="div" onChange={(inView, entry) => inView && topSellingDataRefetch()}>
+                    {topSellingData && <ProductVerticalList title={'Top Selling'} data={topSellingData}/>}
                 </InView>
             </SwiperSlide>
 
             <SwiperSlide>
-                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
-                {TrendingProductsData && <ProductVerticalList title={'Trending Products'} data={TrendingProductsData}/>}
-                </InView>
-            </SwiperSlide>
-
-
-            <SwiperSlide>
-                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
-                {RecentlyAddedData && <ProductVerticalList title={'Recently added'} data={RecentlyAddedData}/>}
+                <InView as="div" onChange={(inView, entry) => inView && trendingProductsDataRefetch()}>
+                    {TrendingProductsData && <ProductVerticalList title={'Trending Products'} data={TrendingProductsData}/>}
                 </InView>
             </SwiperSlide>
 
 
             <SwiperSlide>
-                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
+                <InView as="div" onChange={(inView, entry) => inView && recentlyAddedDataRefetch()}>
+                    {RecentlyAddedData && <ProductVerticalList title={'Recently added'} data={RecentlyAddedData}/>}
+                </InView>
+            </SwiperSlide>
+
+
+            <SwiperSlide>
+                <InView as="div" onChange={(inView, entry) => inView && topRatedDataRefetch()}>
                 {topRatedData && <ProductVerticalList title={'Top Rated'} data={topRatedData}/>}
                 </InView>
             </SwiperSlide>
