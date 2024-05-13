@@ -51,6 +51,7 @@ export default function App({Component, pageProps}: AppProps) {
             <QueryClientProvider client={queryClient}>
                <BasketContextProvider>
                    <HydrationBoundary state={pageProps.dehydratedState}>
+                       <div id={'portal'}></div>
                        <Layout>
                            <Component {...pageProps}/>
                            <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false}

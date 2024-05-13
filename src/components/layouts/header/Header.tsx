@@ -1,5 +1,5 @@
 import React, {useEffect, useState, MouseEvent, useContext} from 'react';
-import {Logo} from "@/components";
+import {LoginModal, Logo} from "@/components";
 import {IconBox} from "@/components";
 import {SearchForm} from "@/components/layouts";
 import {Menu} from "@/components/layouts";
@@ -12,7 +12,10 @@ export function Header() {
 
     const[showMobileMenu, setShowMobileMenu] = useState<boolean>(false)
     const[showBasketCard, setShowBasketCard] = useState<boolean>(false)
+    const [showModal, setShowModal] = useState(false)
+
     const basket = useContext(basketContext)
+
 
     useOverlay({
         onClick: () => {
@@ -46,6 +49,15 @@ export function Header() {
         e.stopPropagation()
     }
 
+    const showModalHandler = ()=>{
+        setShowModal(true)
+    }
+
+    const onCloseHandler = () => {
+      setShowModal(false)
+    }
+
+
     useEffect(()=>{
         if(showMobileMenu)
             document.body.style.overflowY = "hidden"
@@ -54,22 +66,22 @@ export function Header() {
         return ()=> {
             document.body.style.overflowY = "auto"
         }
-
     },[showMobileMenu])
 
     return (
         <>
             <header className="mb-[33px]">
+                {showModal && <LoginModal onClose={onCloseHandler}/>}
                 <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8">
                     <Logo/>
                     <div className="border-2 border-green-150 rounded-[5px] max-w-[700px] w-full mx-[15px] px-[15px] hidden lg:inline-block">
                     <SearchForm inputClassName={"py-[15px]"}/>
                     </div>
                     <ul className="hidden lg:flex gap-5">
-                        <li className="flex gap-2 cursor-pointer">
+                        <li className="flex gap-2 cursor-pointer" onClick={showModalHandler}>
                             <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'}
                                      titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
-                                     hideTitleOnMobile={true}/>
+                                     hideTitleOnMobile={true} />
                         </li>
                         <li className="flex gap-2 cursor-pointer">
                                 <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'}
@@ -104,10 +116,11 @@ export function Header() {
                             <SearchForm/>
                         </div>
                         <ul className="flex gap-5">
-                            <li className="flex gap-2 cursor-pointer">
+                            <li className="flex gap-2 cursor-pointer"  onClick={showModalHandler}>
                                 <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'}
                                          titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
-                                         hideTitleOnMobile={true}/>
+                                         hideTitleOnMobile={true}
+                                        />
                             </li>
                             <li className="flex gap-2 cursor-pointer relative">
                                     <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'}
