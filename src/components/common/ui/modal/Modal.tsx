@@ -17,7 +17,7 @@ export function Modal({children, title, closeModal}: Props) {
                     </div>
                     <h3 className={"text-green-200 font-bold"}>{title}</h3>
                 </div>
-                <div className={'h-[400px]'}>
+                <div className={'h-[400px] py-4 px-7'}>
                     {children}
                 </div>
             </div>

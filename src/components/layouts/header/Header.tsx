@@ -1,5 +1,5 @@
 import React, {useEffect, useState, MouseEvent, useContext} from 'react';
-import {LoginModal, Logo} from "@/components";
+import {LoginModal, Logo, RegisterModal} from "@/components";
 import {IconBox} from "@/components";
 import {SearchForm} from "@/components/layouts";
 import {Menu} from "@/components/layouts";
@@ -12,7 +12,7 @@ export function Header() {
 
     const[showMobileMenu, setShowMobileMenu] = useState<boolean>(false)
     const[showBasketCard, setShowBasketCard] = useState<boolean>(false)
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState<null|'register'|'login'>(null)
 
     const basket = useContext(basketContext)
 
@@ -49,12 +49,8 @@ export function Header() {
         e.stopPropagation()
     }
 
-    const showModalHandler = ()=>{
-        setShowModal(true)
-    }
-
     const onCloseHandler = () => {
-      setShowModal(false)
+      setShowModal(null)
     }
 
 
@@ -71,14 +67,15 @@ export function Header() {
     return (
         <>
             <header className="mb-[33px]">
-                {showModal && <LoginModal onClose={onCloseHandler}/>}
+                {showModal == 'login' && <LoginModal onClose={onCloseHandler} setShowModal={setShowModal}/>}
+                {showModal == 'register' && <RegisterModal onClose={onCloseHandler}/>}
                 <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8">
                     <Logo/>
                     <div className="border-2 border-green-150 rounded-[5px] max-w-[700px] w-full mx-[15px] px-[15px] hidden lg:inline-block">
                     <SearchForm inputClassName={"py-[15px]"}/>
                     </div>
                     <ul className="hidden lg:flex gap-5">
-                        <li className="flex gap-2 cursor-pointer" onClick={showModalHandler}>
+                        <li className="flex gap-2 cursor-pointer" onClick={()=> setShowModal('login')}>
                             <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'}
                                      titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
                                      hideTitleOnMobile={true} />
@@ -104,7 +101,7 @@ export function Header() {
                                 <IconBox icon={'icon-headset xl:text-[32px] 2xl:text-[36px] aspect-square'} size={30} link={'#'}/>
                             <div>
                                 <Link href="tel:19008888" className="text-green-200 lg:text-heading6 xl:text-heading5 2xl:text-heading4">1900-8888</Link>
-                                <div className="font-lato text-xsmall"><span
+                                <div className="font-lato text-xsmall" onClick={()=>setShowModal('register')}><span
                                     className="hidden xl:inline-block">24/7 </span>Support Center
                                 </div>
                             </div>
@@ -116,7 +113,7 @@ export function Header() {
                             <SearchForm/>
                         </div>
                         <ul className="flex gap-5">
-                            <li className="flex gap-2 cursor-pointer"  onClick={showModalHandler}>
+                            <li className="flex gap-2 cursor-pointer"  onClick={()=> setShowModal('login')}>
                                 <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'}
                                          titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
                                          hideTitleOnMobile={true}
