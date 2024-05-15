@@ -21,9 +21,9 @@ export function RegisterModal({onClose}: Props) {
     return (
         <Modal title={'Register'} closeModal={onClose}>
             <form onSubmit={handleSubmit(onSubmit)} className={'w-4/5 mx-auto py-8'}>
-                <Input register={register('username', {required: true})} type={'text'} label={'Username :'}/>
-                <Input register={register('email', {required: "enter your email please"})} type={"email"} label={"Email :"}/>
-                <Input register={register('password', {required: "enter  your password please", minLength: {value: 4, message: "Password must be at least 4 characters"}})} type={'password'} label={'Password :'}/>
+                <Input register={register('username', {required: true})} type={'text'} label={'Username :'} errors={errors} {...{placeholder : 'Enter your username'}}/>
+                <Input register={register('email', {required: "enter your email please"})} type={"email"} label={"Email :"} errors={errors} {...{placeholder: 'Enter your Email'}}/>
+                <Input register={register('password', {required: "enter  your password please", minLength: {value: 4, message: "Password must be at least 4 characters"}})} type={'password'} label={'Password :'} errors={errors}  {...{placeholder: 'Enter your password'}}/>
                 <SubmitBtn btnText={'Submit'} className={'mt-4'}/>
             </form>
         </Modal>
