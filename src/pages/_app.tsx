@@ -12,6 +12,7 @@ import {ToastContainer} from "react-toastify";
 import React from "react";
 import {BasketContextProvider} from "@/store/BasketContext";
 import {ModalContextProvider} from "@/store/ModalContext";
+import {AuthContextProvider} from "@/store/AuthContext";
 
 
 const quicksand = Quicksand({
@@ -52,15 +53,17 @@ export default function App({Component, pageProps}: AppProps) {
             <QueryClientProvider client={queryClient}>
                 <BasketContextProvider>
                     <HydrationBoundary state={pageProps.dehydratedState}>
-                        <ModalContextProvider>
-                            <div id={'portal'}></div>
-                            <Layout>
-                                <Component {...pageProps}/>
-                                <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true}
-                                                draggable={false}
-                                                theme={"light"} position={"top-right"}/>
-                            </Layout>
-                        </ModalContextProvider>
+                        <AuthContextProvider>
+                            <ModalContextProvider>
+                                <div id={'portal'}></div>
+                                <Layout>
+                                    <Component {...pageProps}/>
+                                    <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true}
+                                                    draggable={false}
+                                                    theme={"light"} position={"top-right"}/>
+                                </Layout>
+                            </ModalContextProvider>
+                        </AuthContextProvider>
                     </HydrationBoundary>
                 </BasketContextProvider>
             </QueryClientProvider>
