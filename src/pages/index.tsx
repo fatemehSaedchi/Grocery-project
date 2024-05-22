@@ -90,7 +90,7 @@ export default function Home() {
                         <h3 className="text-heading2 text-blue-300">Bring nature into your home</h3>
                         <Link href="#" className="mt-6 pl-[15px] pr-2.5 py-2 bg-yellow-100 hover:bg-green-200 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
                             <div className="text-xsmall text-white">Shop now</div>
-                            <IconBox icon={'icon-arrow-small-right'} size={24}/>
+                            <IconBox icon={'icon-arrow-small-right text-white'} size={24}/>
                         </Link>
                     </div>
                     { bestSellersData && <div className={'w-full'}><BestSellersSlider sliderData={bestSellersData.data}/></div>}

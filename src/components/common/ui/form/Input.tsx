@@ -21,10 +21,10 @@ export function Input({label, type = 'text', register, errors, ...rest}: Props) 
     return (
         <div className={'mb-4'}>
             <div className={'flex flex-row items-center mb-1'}>
-                {label && <label htmlFor={id} className={'text-green-700 font-bold basis-1/4'}>{label}</label>}
+                {label && <label htmlFor={id} className={'text-green-700 font-bold basis-1/3 xl:basis-1/4'}>{label}</label>}
                 <input className={`w-full px-3 py-2 rounded-md ${(hasError) ? 'outline-red' : 'outline-green-200'}`} type={type} id={id} {...register} {...rest}/>
             </div>
-            <ErrorMessage name={name} errors={errors} register={register}/>
+            <ErrorMessage name={name} errors={errors}/>
         </div>
     );
 }

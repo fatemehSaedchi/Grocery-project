@@ -353,11 +353,9 @@
 }
 .icon-apps:before {
     content: '\e90a';
-    color: #fff;
 }
 .icon-arrow-small-right:before {
     content: '\e90b';
-    color: #fff;
 }
 .icon-bell:before {
     content: '\e90c';

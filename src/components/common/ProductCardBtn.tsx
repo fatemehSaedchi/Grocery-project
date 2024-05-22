@@ -1,7 +1,7 @@
 import {IconBox} from "@/components";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
-import {useContext} from "react";
+import React, {useContext} from "react";
 import BasketContext from "@/store/BasketContext";
 
 interface Props {
@@ -13,6 +13,7 @@ export function ProductCardBtn({productData}: Props) {
     const basket = useContext(BasketContext)
     const currentProductInBasket = basket.getItem(productData.id)
 
+    console.log('nnnnnnnnnn')
     return (
         <div className="add-product">
             {
@@ -34,3 +35,5 @@ export function ProductCardBtn({productData}: Props) {
         </div>
     );
 }
+
+export default React.memo(ProductCardBtn)   //why it doesn't work?
