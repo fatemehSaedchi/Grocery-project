@@ -8,6 +8,7 @@ import {useOverlay} from "@/hooks/use-overlay";
 import basketContext from "@/store/BasketContext";
 import {BasketCard} from "@/components/common/product/product-card/BasketCard";
 import {useModal} from "@/store/ModalContext";
+import {useUser} from "@/store/AuthContext";
 
 export function Header() {
 
@@ -17,6 +18,7 @@ export function Header() {
     const basket = useContext(basketContext)
 
     const {currentModal, openModal, closeModal} = useModal()
+    const {isLogin, logout} = useUser()
 
     useOverlay({
         onClick: () => {
@@ -50,6 +52,14 @@ export function Header() {
         e.stopPropagation()
     }
 
+    const accountHandler = () => {
+        if (isLogin){
+            logout()
+        }else {
+            openModal('login')
+        }
+    }
+
     useEffect(()=>{
         if(showMobileMenu)
             document.body.style.overflowY = "hidden"
@@ -71,8 +81,8 @@ export function Header() {
                     <SearchForm inputClassName={"py-[15px]"}/>
                     </div>
                     <ul className="hidden lg:flex gap-5">
-                        <li className="flex gap-2 cursor-pointer" onClick={()=> openModal('login')}>
-                            <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'}
+                        <li className="flex gap-2 cursor-pointer" onClick={accountHandler}>
+                            <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'logout': 'login/register'}`}
                                      titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
                                      hideTitleOnMobile={true} />
                         </li>
@@ -109,8 +119,8 @@ export function Header() {
                             <SearchForm/>
                         </div>
                         <ul className="flex gap-5">
-                            <li className="flex gap-2 cursor-pointer"  onClick={()=> openModal ('login')}>
-                                <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'}
+                            <li className="flex gap-2 cursor-pointer"  onClick={accountHandler}>
+                                <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'logout': 'login/register'}`}
                                          titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
                                          hideTitleOnMobile={true}
                                         />
