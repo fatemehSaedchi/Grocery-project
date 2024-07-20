@@ -1,30 +1,26 @@
-import React, {useContext, MouseEvent, useEffect} from "react";
+import React, {useContext, MouseEvent, useEffect, Dispatch, SetStateAction} from "react";
 import {IconBox, ImageView} from "@/components";
 import {formatNumberWithCommas} from "@/utils/formatNumber";
 import basketContext from "@/store/BasketContext";
 import Link from "next/link";
 
 interface Props {
-    onClick: (e: MouseEvent)=> void
+    onClick: (e: MouseEvent) => void
+    onClose: () => void
+    setShowBasketCard: Dispatch<SetStateAction<boolean>>
 }
 
-export function BasketCard({onClick}: Props) {
+export function BasketCard({onClick, onClose, setShowBasketCard}: Props) {
     const basket = useContext(basketContext)
-    const showMobileBasket = true
+    const isProduct = basket.basketItems.length > 0
 
-    useEffect(() => {
-        if (showMobileBasket){
-            document.body.style.overflowY = 'hidden'
-        }else {
-            document.body.style.overflowY = 'auto'
-        }
-        return()=>{
-            document.body.style.overflowY = 'auto'
-        }
-    }, [showMobileBasket]);
 
     return (
-        <div onClick={onClick} className={`${showMobileBasket ? 'fixed top-0 w-[400px] h-[100vh] overflow-y-scroll bg-white border-b border-b-green-200 rounded-sm  p-3 right-0 flex flex-col gap-6 pt-10' : ''}`}>
+        <div onClick={onClick}
+             className={`${(isProduct) ? 'fixed top-0 right-0 md:absolute md:top-12 md:right-0 lg:top-24 lg:right-5 md:shadow-2xl w-full md:w-[450px] h-[100vh] md:h-auto overflow-y-auto bg-white md:border md:border-green-150 md:rounded-xl p-3 pt-10 md:pt-7 flex flex-col gap-6' : setShowBasketCard(false)}`}>
+            <div>
+                <span className={"bg-green-150 text-green-500 w-fit py-3 px-4 rounded-full font-bold"} onClick={onClose}>X</span>
+            </div>
             <ul>
                 {
                     basket.basketItems.map((basketItem, index) => {
@@ -35,14 +31,16 @@ export function BasketCard({onClick}: Props) {
 
                         return (
                             <li className={`flex gap-x-4 items-center py-2 ${isLast ? 'border-b-0' : 'border-b border-b-green-150'}`}>
-                                <ImageView src={basketItem.img} alt={basketItem.title} width={basketItem.width} height={basketItem.height} classname={'w-[50px] h-[50px]'}/>
+                                <ImageView src={basketItem.img} alt={basketItem.title} width={basketItem.width}
+                                           height={basketItem.height} classname={'w-[50px] h-[50px]'}/>
                                 <p className={'w-full text-sm'}>{basketItem.title}</p>
                                 {
                                     basketItem.sell_price
                                         ? <span className={'text-center'}>${sell_price}</span>
                                         : <span className={'text-center'}>${price}</span>
                                 }
-                                <div className="input-product__container  border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px] w-[60px] flex justify-between">
+                                <div
+                                    className="input-product__container  border-[1px] rounded-[4px] border-green-300 text-green-300 h-[30px] p-[3px] w-[60px] flex justify-between">
                                     <div className="flex flex-col justify-between">
                                         <IconBox icon={"up icon-angle-small-up"} size={10}
                                                  onClick={() => basket.increaseItem(basketItem.productId)}/>
@@ -56,7 +54,8 @@ export function BasketCard({onClick}: Props) {
                     })
                 }
             </ul>
-            <Link href={'#'} className={'bg-green-600 text-white font-bold rounded-lg px-8 py-1 text-center'}>Pay</Link>
+            <Link href={'#'}
+                  className={'bg-green-600 text-white font-bold rounded-3xl px-8 py-3 text-center'}>View Basket & Checkout</Link>
         </div>
     );
 }

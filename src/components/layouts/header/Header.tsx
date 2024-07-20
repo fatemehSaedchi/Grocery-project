@@ -48,6 +48,10 @@ export function Header() {
         }
     }
 
+    const closeBasketCardHandler = () => {
+        setShowBasketCard(false)
+    }
+
     const basketCardBodyHandler = (e: MouseEvent)=>{
         e.stopPropagation()
     }
@@ -89,8 +93,8 @@ export function Header() {
                         <li className="flex gap-2 cursor-pointer">
                                 <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'}
                                          titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
-                                         hideTitleOnMobile={true} badge={basket.basketItems.length} onClick={basketCardHandler}/>
-                                {showBasketCard && <BasketCard onClick={basketCardBodyHandler}/>}
+                                         hideTitleOnMobile={true} badge={basket.basketItems.length} onMouseEnter={()=> setShowBasketCard(true)} />
+                                {showBasketCard && <BasketCard onClick={basketCardBodyHandler} setShowBasketCard={setShowBasketCard} onClose={closeBasketCardHandler}/>}
                         </li>
                     </ul>
                     <button onClick={menuBtnClickHandler} className="flex flex-col justify-between py-[4px] lg:hidden w-[24px] h-[24px]">
@@ -128,8 +132,8 @@ export function Header() {
                             <li className="flex gap-2 cursor-pointer relative">
                                     <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'}
                                              titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
-                                             hideTitleOnMobile={true} badge={basket.basketItems.length} onClick={basketCardHandler}/>
-                                {showBasketCard && <BasketCard onClick={basketCardBodyHandler}/>}
+                                             hideTitleOnMobile={true} badge={basket.basketItems.length} onMouseEnter={()=> setShowBasketCard(true)}/>
+                                {showBasketCard && <BasketCard onClick={basketCardBodyHandler} setShowBasketCard={setShowBasketCard} onClose={closeBasketCardHandler}/>}
                             </li>
                         </ul>
                     </div>
