@@ -1,4 +1,4 @@
-import React, {useContext, MouseEvent, useEffect, Dispatch, SetStateAction} from "react";
+import React, {useContext, MouseEvent, Dispatch, SetStateAction} from "react";
 import {IconBox, ImageView} from "@/components";
 import {formatNumberWithCommas} from "@/utils/formatNumber";
 import basketContext from "@/store/BasketContext";
