@@ -40,9 +40,11 @@ export function Menu() {
                             browsCategoryItem &&
                             browsCategoryItem.data.map((item: EntityType<MenuItemType>,index:number)=>{
                                 return(
-                                    <IconBox key={index} icon={item.attributes.icon_name} link={item.attributes.link} title={item.attributes.title}
+                                    <IconBox key={index} icon={item.attributes.icon_name} size={30}
+                                             link={item.attributes.link}
+                                             linkClassName={"gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start pl-4 lg:hover:border-green-300"}
+                                             title={item.attributes.title}
                                              titleClassName={"text-heading-sm text-blue-300"}
-                                             linkClassName={"flex items-center gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-full lg:basis-[calc(50%-8px)] justify-start lg:pl-4 lg:hover:border-green-300 cursor-pointer"}
                                              path={item.attributes.icon_path}/>
                                 )
                             })
