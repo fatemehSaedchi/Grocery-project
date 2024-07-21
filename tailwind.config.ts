@@ -13,13 +13,17 @@ const config: Config = {
   //     },
   theme: {
     extend: {
+      backgroundImage:{
+        'about-bg': "url('/assets/images/about/Rectangle 33.png')",
+      },
       aspectRatio: {
         slider: '500 / 300'
       },
       boxShadow: {
         'c-xs': '5px 5px 15px 0px rgba(24, 24, 24, 0.05)',
         'c': '14px 14px 36px 0px rgba(85, 85, 85, 0.1)',
-        'c-lg': '14px 14px 36px 0px rgba(85, 85, 85, 0.22)'
+        'c-lg': '14px 14px 36px 0px rgba(85, 85, 85, 0.22)',
+        'c-xl': '20px 20px 40px 0 rgba(24, 24, 24, 0.07)'
       },
       fontFamily:{
         lato: ['var(--font-lato)']
@@ -135,6 +139,7 @@ const config: Config = {
         red: '#ef4f4f',
         white: '#FFFFFF',
         gray: {
+          50: '#F2F3F4',
           100: '#F4F6FA',
           200: '#E5E5E5',
           300: '#CACACA',
@@ -158,7 +163,9 @@ const config: Config = {
           400: '#3A882B',
           500: '#227226',
           600: '#1A5D2C',
-          700: '#1C4037'
+          650: '#4B675A',
+          700: '#1C4037',
+
         },
         brown: {
           500: '#F0E8D5'
