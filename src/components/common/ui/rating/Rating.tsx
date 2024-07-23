@@ -8,22 +8,20 @@ export function Rating({rate}: Props) {
 
     const star =[]
     const notStar =[]
-    for(let i=0; i<rate; i++){
+    for(let i= 0 ; i < Math.floor(rate); i++){
         star.push(<li className="flex"><IconBox icon={"icon-star-full"} size={12}/></li>
         )
     }
 
-    for(let i=rate; i<5; i++){
+    for(let i= rate; i < 5; i++){
         notStar.push(<li className="flex"><IconBox icon={"icon-star-empty"} size={12}/></li>
         )
     }
 
     return (
-        <>
-            <ul className="flex gap-1">
+        <div className={'flex align-baseline items-center mb-4'}>
                 {star} {notStar}
-            </ul>
-            <div className="text-xsmall text-gray-500 font-lato">({rate})</div>
-        </>
+            <div className="text-xs ml-2 ">({rate})</div>
+        </div>
     );
 }
