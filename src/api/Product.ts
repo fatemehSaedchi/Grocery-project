@@ -1,5 +1,5 @@
 import apiClient from "@/api/config/ApiClient";
-import {ApiResponseType} from "@/types";
+import {ApiResponseType, ApiSingleResponseType} from "@/types";
 import {ProductType} from "@/types/api/Product";
 
 // interface Props {
@@ -32,6 +32,7 @@ import {ProductType} from "@/types/api/Product";
 // }
 
 interface Props {
+    id?: number | string[] | undefined | string
     populate?: Array<'thumbnail'|'categories'|'gallery'|'*'>;
     filters?: {}
     sort?: Array<string>
