@@ -55,3 +55,14 @@ export  function getAllProductsApiCall({populate,filters = {}, sort = [], pagina
         }
     })
 }
+
+export function getOneProductsApiCall({id,populate}: Props): Promise<ApiSingleResponseType<ProductType>> {
+    return apiClient.get(`/products/${id}`,
+        {
+            params: {
+                populate: populate?.join(','),
+            }
+        }
+
+    )
+}
