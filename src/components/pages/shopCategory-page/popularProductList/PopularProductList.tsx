@@ -8,8 +8,7 @@ interface Props {
 
 export function PopularProductList({data}: Props) {
     return (
-        <div
-            className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[30px] pt-7 gap-6 pb-[36px] pr-[180px] mb-10">
+        <div className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[30px] pt-7 gap-6 pb-[36px] pr-[180px] mb-10">
             <p className="text-heading4 font-quickSand mb-[14px] pb-[14px] border-b-2 text-nowrap">Popular Items</p>
             <div className="flex flex-col gap-6">
                 {

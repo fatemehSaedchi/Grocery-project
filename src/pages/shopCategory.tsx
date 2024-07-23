@@ -44,8 +44,8 @@ export default function ShopCategory() {
             </Section>
 
             <Section className="md:flex md:flex-row sm:flex-col md:justify-between">
-                <div className="flex flex-col mr-7">
-                    <Filter />
+                <div className="flex flex-col mr-7 max-w-[462px]">
+                    <Filter/>
                     {popularData && <PopularProductList data={popularData} />}
                 </div>
 
@@ -76,9 +76,7 @@ export default function ShopCategory() {
                             })
                         }
                     </div>
-
-                    {AllProducts && <Paginate data={AllProducts.meta} pageSetter={setCurrentPage} />}
-
+                    {AllProducts && <Paginate data={AllProducts.meta} pageSetter={setCurrentPage}/>}
                 </div>
             </Section>
         </>
