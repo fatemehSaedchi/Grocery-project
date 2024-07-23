@@ -1,6 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
-import {SimpleProductCard} from "@/components";
+import {SimpleProductCardWithSold, SimpleProductCard} from "@/components";
 import {ProductType} from "@/types/api/Product";
 import {EntityType} from "@/types";
 
@@ -30,7 +30,7 @@ export function BestSellersSlider({sliderData}: Props) {
                     sliderData.map((slideData, index)=>{
                         return (
                             <SwiperSlide key={index}>
-                                <SimpleProductCard data={slideData}/>
+                                <SimpleProductCardWithSold data={slideData}/>
                             </SwiperSlide>
                         )
                     })

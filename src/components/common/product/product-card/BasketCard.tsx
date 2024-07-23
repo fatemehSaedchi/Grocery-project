@@ -10,17 +10,13 @@ interface Props {
     setShowBasketCard: Dispatch<SetStateAction<boolean>>
 }
 
-export function BasketCard({onClick, onClose, setShowBasketCard}: Props) {
+export function BasketCard({onClick, setShowBasketCard}: Props) {
     const basket = useContext(basketContext)
     const isProduct = basket.basketItems.length > 0
 
 
     return (
-        <div onClick={onClick}
-             className={`${(isProduct) ? 'fixed top-0 right-0 md:absolute md:top-12 md:right-0 lg:top-24 lg:right-5 md:shadow-2xl w-full md:w-[450px] h-[100vh] md:h-auto overflow-y-auto bg-white md:border md:border-green-150 md:rounded-xl p-3 pt-10 md:pt-7 flex flex-col gap-6' : setShowBasketCard(false)}`}>
-            {/*<div>*/}
-            {/*    <span className={"bg-green-150 text-green-500 w-fit py-3 px-4 rounded-full font-bold"} onClick={onClose}>X</span>*/}
-            {/*</div>*/}
+        <div onClick={onClick} className={`${(isProduct) ? 'fixed top-0 right-0 md:absolute md:top-12 md:right-0 lg:top-24 lg:right-5 md:shadow-2xl w-full md:w-[450px] h-[100vh] md:h-auto overflow-y-auto bg-white md:border md:border-green-150 md:rounded-xl p-3 pt-10 md:pt-7 flex flex-col gap-6 z-[99999]' : setShowBasketCard(false)}`}>
             <ul>
                 {
                     basket.basketItems.map((basketItem, index) => {

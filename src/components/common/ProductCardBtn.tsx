@@ -13,7 +13,6 @@ export function ProductCardBtn({productData}: Props) {
     const basket = useContext(BasketContext)
     const currentProductInBasket = basket.getItem(productData.id)
 
-    console.log('nnnnnnnnnn')
     return (
         <div className="add-product">
             {
