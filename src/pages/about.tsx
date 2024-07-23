@@ -1,25 +1,22 @@
-import {IconBox, ImageView} from "@/components";
+import {ImageView} from "@/components";
 import {Section} from '@/components/layouts'
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation} from "swiper/modules";
 import AnimateValue from "@/components/common/animateValue/AnimateValue";
+import {aboutSliderData} from "@/mock/aboutSliderData";
+import {AboutList, MemberList, ServicesList} from "@/components/pages/about-page";
+import {aboutUsData} from "@/mock/aboutUsData";
+import {servicesData} from "@/mock/servicesData";
+import {AboutSlider} from "@/components/pages/about-page/about-slider";
+import {memberList} from "@/mock/memberList";
 
-interface Props {
 
-}
-
-export default function About({}: Props) {
+export default function About() {
     return (
         <>
             <Section>
                 <div className={'md:flex gap-10 w-full'}>
-                    <ImageView src={'/assets/images/about/Rectangle25.jpg'} alt={'Rectangle'} width={646} height={736}
-                               classname={'w-full md:w-1/2 max-w-[400px] md:max-w-none mx-auto object-center object-cover'}/>
+                    <ImageView src={'/assets/images/about/Rectangle25.jpg'} alt={'Rectangle'} width={646} height={736} classname={'w-full md:w-1/2 max-w-[400px] md:max-w-none mx-auto object-center object-cover'}/>
                     <div className={'md:w-1/2'}>
-                        <div
-                            className={'text-xl sm:text-2xl xl:text-[40px] font-bold text-blue-300 py-7 xl:py-12'}>Welcome
-                            to NestMart
-                        </div>
+                        <div className={'text-xl sm:text-2xl xl:text-[40px] font-bold text-blue-300 py-7 xl:py-12'}>Welcome to NestMart</div>
                         <p className={'text-xs xl:text-base pb-5 text-gray-500'}>Lorem ipsum dolor sit amet, consectetur
                             adipiscing
                             elit, sed do eiusmod
@@ -38,61 +35,7 @@ export default function About({}: Props) {
                             reprehenderit
                             in voluptate id est laborum.
                         </p>
-                        <div className={'relative'}>
-                            <Swiper
-                                // spaceBetween={30}
-                                slidesPerView={3}
-                                modules={[Navigation]}
-                                className={'mt-10 w-full'}
-                                navigation={{
-                                    nextEl: '.swiper-button-next-custom',
-                                    prevEl: '.swiper-button-prev-custom'
-                                }}
-                                breakpoints={{
-                                    0: {
-                                        spaceBetween: 10
-                                    },
-                                    640: {
-                                        spaceBetween: 30
-                                    }
-                                }}
-                            >
-                                <SwiperSlide>
-                                    <ImageView src={'/assets/images/about/Rectangle26.jpg'} alt={'Rectangle26'}
-                                               width={182}
-                                               height={224}/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <ImageView src={'/assets/images/about/Rectangle27.jpg'} alt={'Rectangle27'}
-                                               width={182}
-                                               height={224}/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <ImageView src={'/assets/images/about/Rectangle28.jpg'} alt={'Rectangle28'}
-                                               width={182}
-                                               height={224}/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <ImageView src={'/assets/images/about/Rectangle26.jpg'} alt={'Rectangle26'}
-                                               width={182}
-                                               height={224}/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <ImageView src={'/assets/images/about/Rectangle27.jpg'} alt={'Rectangle27'}
-                                               width={182}
-                                               height={224}/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <ImageView src={'/assets/images/about/Rectangle28.jpg'} alt={'Rectangle28'}
-                                               width={182}
-                                               height={224}/>
-                                </SwiperSlide>
-                            </Swiper>
-                            <IconBox
-                                icon={'icon-angle-small-left swiper-button-next-custom w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-gray-50 text-green-200 hover:bg-green-200 hover:text-gray-50 flex justify-center items-center absolute z-50 top-[40%] left-0 -translate-x-[50%] cursor-pointer'}/>
-                            <IconBox
-                                icon={'icon-angle-small-right swiper-button-prev-custom w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-gray-50 text-green-200 hover:bg-green-200 hover:text-gray-50 flex justify-center items-center absolute z-50 top-[40%] right-0 translate-x-[50%] cursor-pointer'}/>
-                        </div>
+                        { aboutSliderData && <AboutSlider data={aboutSliderData}/>}
                     </div>
                 </div>
             </Section>
@@ -100,71 +43,9 @@ export default function About({}: Props) {
             <Section>
                 <div className={'flex flex-col items-center justify-center gap-3 xl:gap-6 mb-10 lg:mb-16'}>
                     <div className={'text-blue-300 font-bold text-xl md:text-3xl xl:text-[48px]'}>What We Provide?</div>
-                    <ImageView src={'/assets/images/about/Wave.png'} alt={'waveIcon'} width={150} height={15}
-                               classname={'w-[100px] xl:w-[150px]'}/>
+                    <ImageView src={'/assets/images/about/Wave.png'} alt={'waveIcon'} width={150} height={15} classname={'w-[100px] xl:w-[150px]'}/>
                 </div>
-                <div className={'flex flex-wrap items-center justify-center gap-5'}>
-                    <div
-                        className={'border border-gray-200 rounded-[15px] flex flex-col gap-4 xl:gap-5 items-center p-9 w-[290px] xl:w-[390px] hover:shadow-c-xl'}>
-                        <ImageView src={'/assets/images/about/005-sale.png'} alt={'sale'} width={100} height={100}
-                                   classname={'h-16 w-16 xl:h-[80px] xl:w-[80px]'}/>
-                        <div className={'text-blue-300 font-bold text-lg xl:text-xl'}>Best Prices & Offers</div>
-                        <p className={'text-gray-500 text-xs text-center xl:text-base'}>There are many variations of
-                            passages of
-                            Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                        <span className={'text-sm text-green-200 cursor-pointer xl:text-base'}>Read more</span>
-                    </div>
-                    <div
-                        className={'border border-gray-200 rounded-[15px] flex flex-col gap-4 xl:gap-5 items-center p-9 w-[290px] xl:w-[390px] hover:shadow-c-xl'}>
-                        <ImageView src={'/assets/images/about/005-sale.png'} alt={'sale'} width={100} height={100}
-                                   classname={'h-16 w-16 xl:h-[80px] xl:w-[80px]'}/>
-                        <div className={'text-blue-300 font-bold text-lg xl:text-xl'}>Best Prices & Offers</div>
-                        <p className={'text-gray-500 text-xs text-center xl:text-base'}>There are many variations of
-                            passages of
-                            Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                        <span className={'text-sm text-green-200 cursor-pointer xl:text-base'}>Read more</span>
-                    </div>
-                    <div
-                        className={'border border-gray-200 rounded-[15px] flex flex-col gap-4 xl:gap-5 items-center p-9 w-[290px] xl:w-[390px] hover:shadow-c-xl'}>
-                        <ImageView src={'/assets/images/about/005-sale.png'} alt={'sale'} width={100} height={100}
-                                   classname={'h-16 w-16 xl:h-[80px] xl:w-[80px]'}/>
-                        <div className={'text-blue-300 font-bold text-lg xl:text-xl'}>Best Prices & Offers</div>
-                        <p className={'text-gray-500 text-xs text-center xl:text-base'}>There are many variations of
-                            passages of
-                            Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                        <span className={'text-sm text-green-200 cursor-pointer xl:text-base'}>Read more</span>
-                    </div>
-                    <div
-                        className={'border border-gray-200 rounded-[15px] flex flex-col gap-4 xl:gap-5 items-center p-9 w-[290px] xl:w-[390px] hover:shadow-c-xl'}>
-                        <ImageView src={'/assets/images/about/005-sale.png'} alt={'sale'} width={100} height={100}
-                                   classname={'h-16 w-16 xl:h-[80px] xl:w-[80px]'}/>
-                        <div className={'text-blue-300 font-bold text-lg xl:text-xl'}>Best Prices & Offers</div>
-                        <p className={'text-gray-500 text-xs text-center xl:text-base'}>There are many variations of
-                            passages of
-                            Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                        <span className={'text-sm text-green-200 cursor-pointer xl:text-base'}>Read more</span>
-                    </div>
-                    <div
-                        className={'border border-gray-200 rounded-[15px] flex flex-col gap-4 xl:gap-5 items-center p-9 w-[290px] xl:w-[390px] hover:shadow-c-xl'}>
-                        <ImageView src={'/assets/images/about/005-sale.png'} alt={'sale'} width={100} height={100}
-                                   classname={'h-16 w-16 xl:h-[80px] xl:w-[80px]'}/>
-                        <div className={'text-blue-300 font-bold text-lg xl:text-xl'}>Best Prices & Offers</div>
-                        <p className={'text-gray-500 text-xs text-center xl:text-base'}>There are many variations of
-                            passages of
-                            Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                        <span className={'text-sm text-green-200 cursor-pointer xl:text-base'}>Read more</span>
-                    </div>
-                    <div
-                        className={'border border-gray-200 rounded-[15px] flex flex-col gap-4 xl:gap-5 items-center p-9 w-[290px] xl:w-[390px] hover:shadow-c-xl'}>
-                        <ImageView src={'/assets/images/about/005-sale.png'} alt={'sale'} width={100} height={100}
-                                   classname={'h-16 w-16 xl:h-[80px] xl:w-[80px]'}/>
-                        <div className={'text-blue-300 font-bold text-lg xl:text-xl'}>Best Prices & Offers</div>
-                        <p className={'text-gray-500 text-xs text-center xl:text-base'}>There are many variations of
-                            passages of
-                            Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                        <span className={'text-sm text-green-200 cursor-pointer xl:text-base'}>Read more</span>
-                    </div>
-                </div>
+                {servicesData && <ServicesList data={servicesData}/>}
             </Section>
 
             <Section>
@@ -184,56 +65,35 @@ export default function About({}: Props) {
             </Section>
 
             <Section>
-                <div className={'flex flex-wrap gap-6 justify-between w-full'}>
-                    <div className={'md:basis-[30%]'}>
-                        <div className={'text-blue-300 font-bold text-xl lg:text-2xl xl:text-3xl pb-4'}>Who we are</div>
-                        <p className={'text-gray-500 text-sm xl:text-base'}>Volutpat diam ut venenatis tellus in metus. Nec dui nunc
-                            mattis enim ut tellus eros donec ac
-                            odio orci ultrices in. ellus eros donec ac odio orci ultrices in.</p>
-                    </div>
-                    <div className={'md:basis-[30%]'}>
-                        <div className={'text-blue-300 font-bold text-xl lg:text-2xl xl:text-3xl pb-4'}>Who we are</div>
-                        <p className={'text-gray-500 text-sm xl:text-base'}>Volutpat diam ut venenatis tellus in metus. Nec dui nunc
-                            mattis enim ut tellus eros donec ac
-                            odio orci ultrices in. ellus eros donec ac odio orci ultrices in.</p>
-                    </div>
-                    <div className={'md:basis-[30%]'}>
-                        <div className={'text-blue-300 font-bold text-xl lg:text-2xl xl:text-3xl pb-4'}>Who we are</div>
-                        <p className={'text-gray-500 text-sm xl:text-base'}>Volutpat diam ut venenatis tellus in metus. Nec dui nunc
-                            mattis enim ut tellus eros donec ac
-                            odio orci ultrices in. ellus eros donec ac odio orci ultrices in.</p>
-                    </div>
-                </div>
+                {aboutUsData && <AboutList data={aboutUsData}/>}
             </Section>
 
             <Section>
-                {/*<div className={`w-full h-[170px] lg:h-[230px] rounded-[20px] bg-about-bg bg-cover bg-center max-w-7xl`}>*/}
-                {/*    <div className={'w-full h-full bg-green-650 rounded-[20px] bg-opacity-70'}>*/}
-                {/*        <div className={'h-full flex text-white font-bold items-center justify-between px-4 md:px-8 lg:px-16'}>*/}
-                {/*            <div className={'text-center'}>*/}
-                {/*                <span className={'text-xl sm:text-3xl lg:text-5xl'}>12+</span>*/}
-                {/*                <div className={'text-[8px] sm:text-xs lg:text-base pt-1'}>Glorious years</div>*/}
-                {/*            </div>*/}
-                {/*            <div className={'text-center'}>*/}
-                {/*                <span className={'text-xl sm:text-3xl lg:text-5xl'}>360+</span>*/}
-                {/*                <div className={'text-[8px] sm:text-xs lg:text-base pt-1'}>Happy clients</div>*/}
-                {/*            </div>*/}
-                {/*            <div className={'text-center'}>*/}
-                {/*                <span className={'text-xl sm:text-3xl lg:text-5xl'}>580+</span>*/}
-                {/*                <div className={'text-[8px] sm:text-xs lg:text-base pt-1'}>Projects complete</div>*/}
-                {/*            </div>*/}
-                {/*            <div className={'text-center'}>*/}
-                {/*                <span className={'text-xl sm:text-3xl lg:text-5xl'}>160+</span>*/}
-                {/*                <div className={'text-[8px] sm:text-xs lg:text-base pt-1'}>Team advisor</div>*/}
-                {/*            </div>*/}
-                {/*            <div className={'text-center'}>*/}
-                {/*                <span className={'text-xl sm:text-3xl lg:text-5xl'}>48+</span>*/}
-                {/*                <div className={'text-[8px] sm:text-xs lg:text-base pt-1'}>Products Sale</div>*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
                 <AnimateValue/>
+            </Section>
+
+            <Section>
+                <div className={'flex flex-col items-center justify-center gap-3 xl:gap-6 mb-10 lg:mb-16'}>
+                    <div className={'text-blue-300 font-bold text-xl md:text-3xl xl:text-[48px]'}>Our Team</div>
+                    <ImageView src={'/assets/images/about/Wave.png'} alt={'waveIcon'} width={150} height={15}
+                               classname={'w-[100px] xl:w-[150px]'}/>
+                </div>
+                <div className={'flex flex-wrap w-full'}>
+                    <div className={'basis-full lg:basis-1/3 mb-16'}>
+                        <div className={'text-green-200 font-bold text-xs md:text-base xl:text-xl pb-2'}>Our Team</div>
+                        <div className={'text-blue-300 font-bold text-3xl xl:text-[48px] max-w-[200px] xl:max-w-[300px] xl:leading-[55px] pb-5'}>Meet Our Expert Team
+                        </div>
+                        <p className={'text-gray-500 text-xs md:text-sm xl:text-base pb-5 xl:pb-6'}>Proin ullamcorper pretium orci. Donec necscele
+                            risque leo. Nam massa dolor imperdiet neccon
+                            sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
+                        <p className={'text-gray-500 text-xs md:text-sm xl:text-base pb-5 xl:pb-6'}>Proin ullamcorper pretium orci. Donec necscele
+                            risque leo. Nam massa dolor imperdiet neccon
+                            sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
+                        <div className={'bg-green-200 inline-block px-5 py-2 rounded text-white text-sm xl:text-base font-semibold cursor-pointer'}>View All Members
+                        </div>
+                    </div>
+                    { memberList && <MemberList data={memberList}/>}
+                </div>
             </Section>
         </>
 
