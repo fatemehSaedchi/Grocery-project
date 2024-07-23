@@ -32,7 +32,7 @@ import {ProductType} from "@/types/api/Product";
 // }
 
 interface Props {
-    populate?: Array<'thumbnail'|'categories'|'gallery'>;
+    populate?: Array<'thumbnail'|'categories'|'gallery'|'*'>;
     filters?: {}
     sort?: Array<string>
     pagination?: {
