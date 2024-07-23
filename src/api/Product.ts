@@ -1,5 +1,5 @@
 import apiClient from "@/api/config/ApiClient";
-import {ApiResponseType} from "@/types";
+import {ApiResponseType, ApiSingleResponseType} from "@/types";
 import {ProductType} from "@/types/api/Product";
 
 // interface Props {
@@ -32,7 +32,8 @@ import {ProductType} from "@/types/api/Product";
 // }
 
 interface Props {
-    populate?: Array<'thumbnail'|'categories'|'gallery'>;
+    id?: number | string[] | undefined | string
+    populate?: Array<'thumbnail'|'categories'|'gallery'|'*'>;
     filters?: {}
     sort?: Array<string>
     pagination?: {
@@ -53,4 +54,15 @@ export  function getAllProductsApiCall({populate,filters = {}, sort = [], pagina
             pagination: pagination
         }
     })
+}
+
+export function getOneProductsApiCall({id,populate}: Props): Promise<ApiSingleResponseType<ProductType>> {
+    return apiClient.get(`/products/${id}`,
+        {
+            params: {
+                populate: populate?.join(','),
+            }
+        }
+
+    )
 }
