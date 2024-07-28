@@ -17,7 +17,7 @@ export function Header() {
 
     const basket = useContext(basketContext)
 
-    const {currentModal, openModal, closeModal} = useModal()
+    const {currentModal, closeModal} = useModal()
     const {isLogin, logout} = useUser()
 
     useOverlay({
@@ -41,12 +41,12 @@ export function Header() {
         e.stopPropagation()
     }
 
-    const basketCardHandler = (e: MouseEvent)=>{
-        e.stopPropagation()
-        if (basket.basketItems.length > 0){
-            setShowBasketCard ((prevState)=>!prevState)
-        }
-    }
+    // const basketCardHandler = (e: MouseEvent)=>{
+    //     e.stopPropagation()
+    //     if (basket.basketItems.length > 0){
+    //         setShowBasketCard ((prevState)=>!prevState)
+    //     }
+    // }
 
     const closeBasketCardHandler = () => {
         setShowBasketCard(false)
@@ -60,7 +60,7 @@ export function Header() {
         if (isLogin){
             logout()
         }else {
-            openModal('login')
+            // openModal('login')
         }
     }
 
@@ -77,6 +77,7 @@ export function Header() {
     return (
         <>
             <header className="mb-[33px]">
+
                 {currentModal == 'login' && <LoginModal onClose={closeModal}/>}
                 {currentModal == 'register' && <RegisterModal onClose={closeModal}/>}
                 <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8">
@@ -86,7 +87,7 @@ export function Header() {
                     </div>
                     <ul className="hidden lg:flex gap-5">
                         <li className="flex gap-2 cursor-pointer" onClick={accountHandler}>
-                            <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'logout': 'login/register'}`}
+                            <IconBox icon={'icon-user'} size={24} link={`${isLogin ? '#' : '/auth/login'}`} title={`${isLogin ? 'logout': 'login/register'}`}
                                      titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
                                      hideTitleOnMobile={true} />
                         </li>

@@ -55,8 +55,8 @@ export default function App({Component, pageProps}: AppProps) {
                     <HydrationBoundary state={pageProps.dehydratedState}>
                         <AuthContextProvider>
                             <ModalContextProvider>
-                                <div id={'portal'}></div>
                                 <Layout>
+                                    <div id={'portal'} className={'h-full container'}></div>
                                     <Component {...pageProps}/>
                                     <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true}
                                                     draggable={false}
