@@ -3,6 +3,11 @@ export interface ApiResponseType<T> {
     meta: MetaType
 }
 
+export interface SingleApiResponseType<T> {
+    data: EntityType<T>
+    meta: MetaType
+}
+
 export interface EntityType<T> {
     id: number
     attributes: T

@@ -1,21 +1,26 @@
-import React, {useEffect, useState, MouseEvent, useContext} from 'react';
+import React, {useEffect, useState, MouseEvent} from 'react';
 import {LoginModal, Logo, RegisterModal} from "@/components";
 import {IconBox} from "@/components";
 import {SearchForm} from "@/components/layouts";
 import {Menu} from "@/components/layouts";
 import Link from "next/link";
 import {useOverlay} from "@/hooks/use-overlay";
-import basketContext from "@/store/BasketContext";
 import {BasketCard} from "@/components/common/product/product-card/BasketCard";
 import {useModal} from "@/store/ModalContext";
 import {useUser} from "@/store/AuthContext";
+import {useBasket} from "@/hooks/use-basket";
+import {useQueryClient} from "@tanstack/react-query";
 
 export function Header() {
+
+    const queryClient = useQueryClient()
+
+    const {basketItems} = useBasket()
 
     const[showMobileMenu, setShowMobileMenu] = useState<boolean>(false)
     const[showBasketCard, setShowBasketCard] = useState<boolean>(false)
 
-    const basket = useContext(basketContext)
+    // const basket = useContext(basketContext)
 
     const {currentModal, openModal, closeModal} = useModal()
     const {isLogin, logout} = useUser()
@@ -43,7 +48,7 @@ export function Header() {
 
     const basketCardHandler = (e: MouseEvent)=>{
         e.stopPropagation()
-        if (basket.basketItems.length > 0){
+        if (basketItems.length > 0){
             setShowBasketCard ((prevState)=>!prevState)
         }
     }
@@ -59,6 +64,7 @@ export function Header() {
     const accountHandler = () => {
         if (isLogin){
             logout()
+            queryClient.invalidateQueries({queryKey: ['get-basket']})
         }else {
             openModal('login')
         }
@@ -93,7 +99,7 @@ export function Header() {
                         <li className="flex gap-2 cursor-pointer">
                                 <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'}
                                          titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
-                                         hideTitleOnMobile={true} badge={basket.basketItems.length} onMouseEnter={()=> setShowBasketCard(true)} />
+                                         hideTitleOnMobile={true} badge={basketItems.length} onMouseEnter={()=> setShowBasketCard(true)} />
                                 {showBasketCard && <BasketCard onClick={basketCardBodyHandler} setShowBasketCard={setShowBasketCard} onClose={closeBasketCardHandler}/>}
                         </li>
                     </ul>
@@ -132,7 +138,7 @@ export function Header() {
                             <li className="flex gap-2 cursor-pointer relative">
                                     <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'}
                                              titleClassName={"hidden xl:inline-block text-medium text-gray-500 font-lato"}
-                                             hideTitleOnMobile={true} badge={basket.basketItems.length} onMouseEnter={()=> setShowBasketCard(true)}/>
+                                             hideTitleOnMobile={true} badge={basketItems.length} onMouseEnter={()=> setShowBasketCard(true)}/>
                                 {showBasketCard && <BasketCard onClick={basketCardBodyHandler} setShowBasketCard={setShowBasketCard} onClose={closeBasketCardHandler}/>}
                             </li>
                         </ul>

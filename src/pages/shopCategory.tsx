@@ -53,7 +53,7 @@ export default function ShopCategory() {
                     <div className="flex justify-between rounded-[15px] bg-gray-200 py-[25px] ps-[30px] mb-[48px]">
                         <div className="text-heading6 text-gray-500">There are
                             {AllProducts &&
-                                <span className="text-blue-200"> {AllProducts.data.length} </span>
+                                <span className="text-blue-200"> {AllProducts.meta.pagination.total} </span>
                             }
                             products in this category
                         </div>
