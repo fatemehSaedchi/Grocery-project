@@ -3,7 +3,7 @@ export interface ApiResponseType<T> {
     meta: MetaType
 }
 
-export interface SingleApiResponseType<T> {
+export interface ApiSingleResponseType<T> {
     data: EntityType<T>
     meta: MetaType
 }

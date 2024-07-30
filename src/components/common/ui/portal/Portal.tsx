@@ -16,7 +16,7 @@ export function Portal({children, onClose}: Props) {
     }, []);
 
     return createPortal(
-        <div className={"fixed top-0 right-0 left-0 bottom-0 z-20 bg-black bg-opacity-40 flex justify-center items-center"} onClick={onClose}>
+        <div className={"fixed top-0 right-0 left-0 bottom-0 z-50 bg-black bg-opacity-40 flex justify-center items-center"} onClick={onClose}>
             {children}
         </div>,
         document.getElementById("portal")!
