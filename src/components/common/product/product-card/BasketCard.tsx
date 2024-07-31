@@ -33,7 +33,7 @@ export function BasketCard({onClick, onClose, setShowBasketCard}: Props) {
                     })
                 }
             </ul>
-            <Link href={'/checkout'} onClick={onClose} className={'bg-green-600 text-white font-bold rounded-3xl px-8 py-3 text-center'}>View Basket & Checkout</Link>
+            <Link href={'/yourCart'} onClick={onClose} className={'bg-green-600 text-white font-bold rounded-3xl px-8 py-3 text-center'}>View Basket & Checkout</Link>
         </div>
     );
 }

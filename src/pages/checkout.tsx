@@ -1,5 +1,5 @@
 import React from "react";
-import {CheckoutForm, ImageView} from "@/components";
+import {CheckoutForm, ImageView, OrderCounter} from "@/components";
 import {Section} from "@/components/layouts";
 import {useBasket} from "@/hooks/use-basket";
 import OrdersList from "@/components/pages/checkout/orders-list/OrdersList";
@@ -35,10 +35,7 @@ export default function Checkout() {
     return (
         <Section>
             <form className="font-lato" onSubmit={handleSubmit(checkoutSubmitHandler)}>
-                <h1 className="text-heading2 font-quickSand">Checkout</h1>
-                <div className="text-heading6 text-gray-500 mt-4">There are
-                    <span className="text-green-200">{basketItems.length}</span> products in your cart
-                </div>
+                <OrderCounter title={'Checkout'}/>
                 <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
                     <CheckoutForm register={register} errors={errors}/>
                     <div className="flex flex-col gap-[70px]">

@@ -3,6 +3,7 @@ import {ImageView} from "@/components";
 import {BasketItemType} from "@/types/api/Basket";
 import {useQuery} from "@tanstack/react-query";
 import {getOneProductsApiCall} from "@/api/Product";
+import {formatNumberWithCommas} from "@/utils/formatNumber";
 
 interface Props {
     data: BasketItemType
@@ -11,6 +12,14 @@ interface Props {
 export function OrderCard({data}: Props) {
 
     const {data: thumbnailData } = useQuery({queryKey: ['thumbnailData', data.product.data.id], queryFn: ()=> getOneProductsApiCall({id: data.product.data.id, populate: ['thumbnail']})})
+
+    let totalPrice
+    if (data.product.data.attributes.sell_price){
+       totalPrice =  formatNumberWithCommas({number: data.product.data.attributes.sell_price * data.quantity })
+    }else {
+        totalPrice = formatNumberWithCommas({number: data.product.data.attributes.price * data.quantity })
+    }
+
 
     return (
         <div className="grid grid-cols-[minmax(0,_2fr)_minmax(0,_4fr)_minmax(0,_1fr)_minmax(0,_1fr)] gap-7 w-full">
@@ -27,7 +36,7 @@ export function OrderCard({data}: Props) {
                 {data.product.data.attributes.title}
             </div>
             <div className="font-lato text-heading4 text-gray-400 flex justify-center items-center">× {data.quantity}</div>
-            <div className="font-lato text-heading4 text-green-200 flex justify-center items-center">${data.product.data.attributes.price}</div>
+            <div className="font-lato text-heading4 text-green-200 flex justify-center items-center">${totalPrice}</div>
         </div>
     );
 }
