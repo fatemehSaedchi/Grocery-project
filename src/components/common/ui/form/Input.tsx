@@ -9,9 +9,11 @@ interface Props extends React.HTMLAttributes<HTMLInputElement>{
     register: UseFormRegisterReturn<any>
     errors?: FieldErrors<any>
     className?: string
+    marginBottom?: string
+    parentClassname?: string
 }
 
-export function Input({label, type = 'text', register, errors, className, ...rest}: Props) {
+export function Input({label, type = 'text', register, errors, className, marginBottom, parentClassname, ...rest}: Props) {
 
     const id = useId()
     const name = register.name
@@ -23,8 +25,8 @@ export function Input({label, type = 'text', register, errors, className, ...res
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-        <div className={'mb-4'}>
-            <div className={'flex flex-row items-center mb-1'}>
+        <div className={twMerge('mb-4', marginBottom)}>
+            <div className={twMerge('flex flex-row items-center mb-1', parentClassname)}>
                 {label && <label htmlFor={id} className={'text-green-700 font-bold basis-1/3 xl:basis-1/4'}>{label}</label>}
                 {
                     type === 'password' ?

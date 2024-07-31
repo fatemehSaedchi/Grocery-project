@@ -5,10 +5,8 @@ import {loginApiCall} from "@/api/Auth";
 import {useUser} from "@/store/AuthContext";
 import {toast} from "react-toastify";
 import {useRouter} from "next/router";
+import {useBasket} from "@/hooks/use-basket";
 
-interface Props {
-
-}
 
 interface formData {
     identifier: string;
@@ -16,15 +14,13 @@ interface formData {
 }
 
 
-export default function Login({}: Props) {
+export default function Login() {
 
     const {register, handleSubmit, formState: {errors}} = useForm<formData>()
-
     const mutate = useMutation({mutationFn: loginApiCall})
-
     const {isLogin, login} = useUser()
-
     const router = useRouter()
+    const {uuid2user} = useBasket()
 
     const onSubmit = (data: formData) => {
 
@@ -34,6 +30,7 @@ export default function Login({}: Props) {
                 console.log("isLogin", isLogin)
                 toast.success('login successfully')
                 router.back()
+                uuid2user()
             }
         })
     }
