@@ -58,9 +58,9 @@ export default function App({Component, pageProps}: AppProps) {
                                 <Layout>
                                     <div id={'portal'} className={'h-full container'}></div>
                                     <Component {...pageProps}/>
-                                    <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true}
+                                    <ToastContainer autoClose={5000} hideProgressBar={false} closeOnClick={true}
                                                     draggable={false}
-                                                    theme={"light"} position={"top-right"}/>
+                                                    theme={"light"} position={"top-right"} newestOnTop={true}/>
                                 </Layout>
                             </ModalContextProvider>
                         </AuthContextProvider>
