@@ -3,9 +3,9 @@ import {FieldErrors, UseFormRegisterReturn} from "react-hook-form";
 import {ErrorMessage} from "@/components/common/ui/form/ErrorMessage";
 import {twMerge} from "tailwind-merge";
 
-interface Props extends React.HTMLAttributes<HTMLInputElement>{
+interface Props extends React.HTMLAttributes<HTMLInputElement> {
     label?: string
-    type?: 'text' | 'password' | 'email' | 'tel' | 'number'
+    type?: 'text' | 'password' | 'email' | 'tel' | 'number' | 'confirmPassword' | 'checkbox'
     register: UseFormRegisterReturn<any>
     errors?: FieldErrors<any>
     className?: string
@@ -18,7 +18,7 @@ export function Input({label, type = 'text', register, errors, className, margin
     const id = useId()
     const name = register.name
     let hasError = false
-    if (errors && errors[name]){
+    if (errors && errors[name]) {
         hasError = true
     }
 

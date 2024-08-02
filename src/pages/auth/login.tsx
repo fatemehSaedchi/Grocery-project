@@ -6,6 +6,8 @@ import {useUser} from "@/store/AuthContext";
 import {toast} from "react-toastify";
 import {useRouter} from "next/router";
 import {useBasket} from "@/hooks/use-basket";
+import {AuthPageReplacer} from "@/components/pages/auth/AuthPageReplacer";
+import React from "react";
 
 
 interface formData {
@@ -35,30 +37,34 @@ export default function Login() {
         })
     }
 
-    const replaceHandler = (type: "register" | 'forgotPassword') => {
-        router.replace(`/auth/${type}`)
-    }
 
 
     return (
         <>
+
             {
                 // <!-- Login Start -->
             }
+
             <section className="container mt-[100px] mb-[125px] flex justify-center gap-14 font-lato">
                 <ImageView alt={''} src={"/assets/images/Rectangle 39.png"} height={601} width={512}
                            classname={"rounded-lg"}/>
+
                 {
                     // <!-- Login Form -->
                 }
+
                 <form onSubmit={handleSubmit(onSubmit)} className="w-[480px]">
                     <h1 className="text-heading2 mb-2 font-quickSand">Login</h1>
                     <div>
                         <p className="text-medium text-gray-400 mb-10">Don't have an account?
-                            <span
-                            className="text-green-200 cursor-pointer" onClick={()=> replaceHandler("register")}>
+                            <AuthPageReplacer route={'register'}>
+                                <span
+                                    className="text-green-200 cursor-pointer">
                                 Create here
                             </span>
+                            </AuthPageReplacer>
+
                         </p>
                         <Input register={register('identifier', {required: true})} type={'text'} aria-label={'email'}
                                errors={errors} {...{placeholder: 'Username or Email *'}} />
@@ -84,6 +90,7 @@ export default function Login() {
                         }
 
                         <div className="flex justify-between items-center mb-10">
+
                             {
                                 // <div className="flex gap-2 items-center">
                                 //     <label className="flex items-center cursor-pointer">
@@ -94,16 +101,21 @@ export default function Login() {
                                 //     </label>
                                 // </div>
                             }
-                            <p className="text-heading-sm text-gray-400 cursor-pointer" onClick={()=> replaceHandler("forgotPassword")}>Forgot password?</p>
+
+                            <AuthPageReplacer route={'forgotPassword'}>
+                                <p className="text-heading-sm text-gray-400 cursor-pointer">Forgot password?</p>
+                            </AuthPageReplacer>
                         </div>
 
-                        <button className="h-16 px-11 bg-blue-300 text-white rounded-xl font-quickSand">Log in</button>
+                        <button className="h-16 px-11 bg-blue-300 text-white rounded-xl font-quickSand" type={"submit"}>Log in</button>
                     </div>
                 </form>
             </section>
+
             {
                 // <!-- Login End -->
             }
+
         </>
     )
 }
