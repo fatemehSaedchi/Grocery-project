@@ -13,6 +13,7 @@ export function useMenu({position}: Prop) {
         const findMenu = menuData.data.filter((item: EntityType<MenuType>) => item.attributes.position === position);
         if (findMenu.length > 0) {
             menuItems = findMenu[0].attributes.menu_items;
+            // @ts-ignore
             menuItems.data.sort((a: EntityType<MenuItemType>, b: EntityType<MenuItemType>) => {
                 if (a.attributes.rank < b.attributes.rank)
                     return -1;

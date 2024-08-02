@@ -9,6 +9,16 @@ const ApiClient = axios.create({
 
 export default ApiClient;
 
+ApiClient.interceptors.request.use(function (request){
+    const token = window.localStorage.getItem('token');
+
+    if (token){
+        request.headers.Authorization = "Bearer " + token
+    }
+
+    return request
+})
+
 ApiClient.interceptors.response.use(function (response) {
     return response.data;
 }, function (error) {

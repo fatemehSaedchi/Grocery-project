@@ -44,6 +44,12 @@ interface Props {
         limit?: number
     }
 }
+
+interface SingleProps {
+    id?: number | string[] | undefined | string
+    populate?: Array<'thumbnail'|'categories'|'gallery'|'*'>;
+}
+
 export  function getAllProductsApiCall({populate,filters = {}, sort = [], pagination = {} }: Props  ): Promise<ApiResponseType<ProductType>> {
 
     return apiClient.get('/products',{
@@ -56,7 +62,7 @@ export  function getAllProductsApiCall({populate,filters = {}, sort = [], pagina
     })
 }
 
-export function getOneProductsApiCall({id,populate}: Props): Promise<ApiSingleResponseType<ProductType>> {
+export function getOneProductsApiCall({id,populate}: SingleProps): Promise<ApiSingleResponseType<ProductType>> {
     return apiClient.get(`/products/${id}`,
         {
             params: {
