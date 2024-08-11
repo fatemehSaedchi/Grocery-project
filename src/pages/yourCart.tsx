@@ -9,13 +9,11 @@ import {
 } from "@/components";
 import {useForm} from "react-hook-form";
 import Link from "next/link";
+import {useBasket} from "@/hooks/use-basket";
 
+export default function YourCart() {
 
-interface Props {
-    
-}
-
-export default function YourCart({}: Props) {
+    const {deleteItems, refreshBasket} = useBasket()
 
     const {register, handleSubmit,formState:{errors}} = useForm()
 
@@ -27,7 +25,7 @@ export default function YourCart({}: Props) {
                     <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
                         <div>
                             <div className="flex items-center justify-end pb-[20px]">
-                                <div className="flex items-center font-quickSand text-heading6 text-gray-500">
+                                <div className="flex items-center font-quickSand text-heading6 text-gray-500 cursor-pointer" onClick={deleteItems}>
                                     <ImageView src={"/assets/images/yourCart/fi-rs-trash%201.svg"} alt={"trash bin"} width={16} height={17}/>
                                     <span className={'pl-1'}>Clear Cart</span>
                                 </div>
@@ -41,7 +39,7 @@ export default function YourCart({}: Props) {
                                             <IconBox icon={"icon-arrow-small-right rotate-180 text-white"} size={24}/>
                                             <Link href={'/'} className="font-quickSand text-heading6 text-white">Continue Shopping</Link>
                                         </button>
-                                        <button type="submit" className="mt-6 px-[50px] py-2 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
+                                        <button type="submit" className="mt-6 px-[50px] py-2 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5" onClick={refreshBasket}>
                                             <ImageView src={"/assets/images/yourCart/fi-rs-refresh%201.svg"} alt={"refresh"} width={17} height={17}/>
                                             <div className="font-quickSand text-heading6 text-white">Update Cart</div>
                                         </button>

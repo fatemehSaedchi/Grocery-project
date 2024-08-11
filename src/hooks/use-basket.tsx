@@ -49,7 +49,19 @@ export function useBasket() {
         })
     }
 
-    const  updateItemHandler = (productId: number, type: 'increase' | 'decrease') => {
+    const deleteItemsHandler = ()=>{
+        const updateData : UpdateBasketData = {
+            basket_items: []
+        }
+        mutate.mutate(updateData, {
+            onSuccess: (response) => {
+                queryClient.invalidateQueries({queryKey: ['get-basket']})
+            }
+        })
+
+    }
+
+    const  updateItemHandler = (productId: number, type: 'increase' | 'decrease' | 'delete') => {
 
         let prepareUpdateData = basketItems.map((item, index)=>{
             return {
@@ -64,8 +76,10 @@ export function useBasket() {
             if (item.product.connect[0].id === productId){
                 if (type === 'increase'){
                     item.quantity = item.quantity + 1
-                }else {
+                }else if (type === 'decrease'){
                     item.quantity = item.quantity - 1
+                } else {
+                    item.quantity = 0
                 }
             }
             return item
@@ -103,5 +117,9 @@ export function useBasket() {
         }
     }
 
-    return{basketItems: basketItems, addItem: addItemHandler, updateItem: updateItemHandler, getItem: getItemHandler, uuid2user: uuid2userHandler}
+    const refreshBasketHandler = ()=>{
+        queryClient.invalidateQueries({queryKey:['get-basket']})
+    }
+
+    return{basketItems: basketItems, addItem: addItemHandler, updateItem: updateItemHandler, getItem: getItemHandler, uuid2user: uuid2userHandler, deleteItems: deleteItemsHandler, refreshBasket: refreshBasketHandler}
 }

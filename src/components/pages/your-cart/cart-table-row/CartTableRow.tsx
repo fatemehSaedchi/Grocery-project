@@ -3,12 +3,16 @@ import {useQuery} from "@tanstack/react-query";
 import {getOneProductsApiCall} from "@/api/Product";
 import {ImageView} from "@/components";
 import {formatNumberWithCommas} from "@/utils/formatNumber";
+import {useBasket} from "@/hooks/use-basket";
+import {type} from "node:os";
 
 interface Props {
     data: BasketItemType
 }
 
 export function CartTableRow({data}: Props) {
+
+    const {updateItem} = useBasket()
 
     const {data: thumbnailData } = useQuery({queryKey: ['thumbnailData', data.product.data.id], queryFn: ()=> getOneProductsApiCall({id: data.product.data.id, populate: ['thumbnail']})})
 
@@ -49,7 +53,7 @@ export function CartTableRow({data}: Props) {
                 <div className="flex justify-center items-center">
                     <div className="font-quickSand text-xsmall md:text-heading4 text-green-200">$ {totalPrice}</div>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center cursor-pointer" onClick={()=> updateItem(data.product.data.id, 'delete')}>
                     <ImageView src={"/assets/images/yourCart/fi-rs-cross-circle%201.svg"} alt={"clean sign"} width={25} height={25}/>
                 </div>
             </div>
