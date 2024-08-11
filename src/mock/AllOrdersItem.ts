@@ -1,39 +1,34 @@
 export const allOrdersItem = [
     {
         id: 1357,
-        date: 'March 15, 2021',
+        date: 'March  15, 2021',
         status: 'Processing',
-        total: '$410.00 for 2 item',
+        total: 410.00,
+        quantity: 2,
         actions: 'View'
     },
     {
         id: 1358,
-        date: 'March 15, 2021',
+        date: 'May  22, 2021',
         status: 'Completed',
-        total: '$125.00 for 2 item',
+        total: 125.00,
+        quantity: 2,
         actions: 'View'
     },
     {
         id: 1359,
-        date: 'March 15, 2021',
+        date: 'July  16, 2021',
         status: 'Completed',
-        total: '$580.00 for 4 item',
+        total: 580.00,
+        quantity: 4,
         actions: 'View'
     },
     {
         id: 1360,
-        date: 'March 15, 2021',
+        date: 'August  6, 2021',
         status: 'Completed',
-        total: '$250.00 for 3 item',
+        total: 250.00,
+        quantity: 3,
         actions: 'View'
     }
 ]
-
-
-
-
-// <div className="text-medium text-gray-500">#1357</div>
-// <div className="text-medium text-gray-500">March 15, 2021</div>
-// <div className="text-medium text-yellow-200">Processing</div>
-//     <div className="text-medium text-gray-500">$125.00 for 2 item</div>
-// <button className="text-medium text-green-200">View</button>

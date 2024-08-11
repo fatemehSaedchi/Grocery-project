@@ -1,8 +1,9 @@
-import {ImageView, Input} from "@/components";
+import {ImageView, Input, OptionType, ReactSelectCountry} from "@/components";
 import Link from "next/link";
 import React from "react";
-import {FieldErrors, UseFormRegister} from "react-hook-form";
+import {Control, Controller, FieldErrors, useForm, UseFormRegister} from "react-hook-form";
 import {CheckoutFormType} from "@/pages/checkout";
+
 
 interface Props {
     register: UseFormRegister<CheckoutFormType>
@@ -10,6 +11,11 @@ interface Props {
 }
 
 export function CheckoutForm({register, errors}: Props) {
+
+    const options: OptionType[] = [
+        { value: 'iran', label: 'Iran' },
+        { value: 'us', label: 'United States' }
+    ];
 
     return (
         <div className="flex flex-col md:grid md:grid-cols-2 gap-6">
@@ -56,36 +62,32 @@ export function CheckoutForm({register, errors}: Props) {
                    parentClassname={"focus-within:border-green-200 shadow-c rounded-[10px]"}
                    className={'mb-0 py-4 rounded-[10px]'}/>
 
-            <div className="focus-within:border-green-200 bg-white flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8">
-                <label htmlFor="country" className="hidden"></label>
-                <select {...register("country")} id="country" required
-                        className="w-full bg-transparent placeholder-gray-400 focus:outline-none text-gray-500 text-medium border-none">
-                    <option>State / Country*</option>
-                    <option>Iran</option>
-                    <option>United State</option>
-                </select>
-            </div>
+            <ReactSelectCountry errors={errors} register={register}/>
 
             <Input register={register("City_Town", {
-                required: true})}
+                required: true
+            })}
                    type={"text"} errors={errors} {...{placeholder: "City / Town"}} marginBottom={'mb-0'}
                    parentClassname={"focus-within:border-green-200 shadow-c rounded-[10px]"}
                    className={'mb-0 py-4 rounded-[10px]'}/>
 
             <Input register={register("Postcode_Zip", {
-                required: true})}
+                required: true
+            })}
                    type={"text"} errors={errors} {...{placeholder: "Postcode / Zip"}} marginBottom={'mb-0'}
                    parentClassname={"focus-within:border-green-200 shadow-c rounded-[10px]"}
                    className={'mb-0 py-4 rounded-[10px]'}/>
 
             <Input register={register("phone_number", {
-                required: true, minLength: {value: 8, message: 'Phone number must be at 8 number'}})}
+                required: true, minLength: {value: 8, message: 'Phone number must be at 8 number'}
+            })}
                    type={"tel"} errors={errors} {...{placeholder: "Phone number"}} marginBottom={'mb-0'}
                    parentClassname={"focus-within:border-green-200 shadow-c rounded-[10px]"}
                    className={'mb-0 py-4 rounded-[10px]'}/>
 
             <Input register={register("email", {
-                required: true})}
+                required: true
+            })}
                    type={"email"} errors={errors} {...{placeholder: "Email"}} marginBottom={'mb-0'}
                    parentClassname={"focus-within:border-green-200 shadow-c rounded-[10px]"}
                    className={'mb-0 py-4 rounded-[10px]'}/>
@@ -95,7 +97,8 @@ export function CheckoutForm({register, errors}: Props) {
                    parentClassname={"focus-within:border-green-200 shadow-c rounded-[10px]"}
                    className={'mb-0 py-4 rounded-[10px]'}/>
 
-            <div className="col-span-2 focus-within:border-green-200 bg-white flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 min-h-[210px]">
+            <div
+                className="col-span-2 focus-within:border-green-200 bg-white flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 min-h-[210px]">
                 <label htmlFor="information" className="hidden"></label>
                 <textarea {...register("information")} id="information" placeholder="Additional information"
                           className="resize-none w-full h-full bg-transparent placeholder-gray-400 focus:outline-none text-gray-500 text-medium"></textarea>
