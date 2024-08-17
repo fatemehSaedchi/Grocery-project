@@ -15,8 +15,8 @@ export function SimpleProductSlider({sliderData, nextEl, prevEl}: Props) {
     return (
 
         <Swiper
-            spaceBetween={16}
-            slidesPerView={2}
+            spaceBetween={20}
+            slidesPerView={1.5}
             modules={[Autoplay,Navigation]}
             autoplay={true}
             navigation={{

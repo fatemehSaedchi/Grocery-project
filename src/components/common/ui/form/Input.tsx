@@ -27,7 +27,7 @@ export function Input({label, type = 'text', register, errors, className, margin
     return (
         <div className={twMerge('mb-4', marginBottom)}>
             <div className={twMerge('flex flex-row items-center mb-1', parentClassname)}>
-                {label && <label htmlFor={id} className={'text-green-700 font-bold basis-1/3 xl:basis-1/4'}>{label}</label>}
+                {label && <label htmlFor={id} className={'text-green-700 font-bold w-max'}>{label}</label>}
                 {
                     type === 'password' ?
                         <div className={'flex gap-2 justify-between w-full justify-items-center text-medium mb-6'}>

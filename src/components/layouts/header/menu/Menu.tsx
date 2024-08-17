@@ -50,14 +50,14 @@ export function Menu() {
                             })
                         }
 
-                        {/*{*/}
-                        {/*    browsCategoriesMock.map((item, index) => {*/}
-                        {/*        return <IconBox key={index} icon={item.icon} link={item.link} title={item.title}*/}
-                        {/*                        titleClassName={"text-heading-sm text-blue-300"}*/}
-                        {/*                        linkClassName={"flex items-center gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start pl-4 lg:hover:border-green-300 cursor-pointer"}*/}
-                        {/*                        path={item.iconPath}/>*/}
-                        {/*    })*/}
-                        {/*}*/}
+                        {/*
+                            browsCategoriesMock.map((item, index) => {
+                                return <IconBox key={index} icon={item.icon} link={item.link} title={item.title}
+                                                titleClassName={"text-heading-sm text-blue-300"}
+                                                linkClassName={"flex items-center gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start pl-4 lg:hover:border-green-300 cursor-pointer"}
+                                                path={item.iconPath}/>
+                            })
+                        */}
 
                         <div id="more_categories"
                              className="cursor-pointer flex gap-4 items-center lg:justify-center w-full mt-[17px]">
@@ -86,18 +86,18 @@ export function Menu() {
                         })
                     }
 
-                    {/*{*/}
-                    {/*    menuMock.map((item, index)=>{*/}
-                    {/*        return(*/}
-                    {/*            <li>*/}
-                    {/*                {*/}
-                    {/*                    item.icon ? <IconBox {...item} size={24}/>*/}
-                    {/*                        : <Link href={item.link}>{item.title}</Link>*/}
-                    {/*                }*/}
-                    {/*            </li>*/}
-                    {/*        )*/}
-                    {/*    })*/}
-                    {/*}*/}
+                    {/*
+                        menuMock.map((item, index)=>{
+                            return(
+                                <li>
+                                    {
+                                        item.icon ? <IconBox {...item} size={24}/>
+                                            : <Link href={item.link}>{item.title}</Link>
+                                    }
+                                </li>
+                            )
+                        })
+                    */}
                 </ul>
             </nav>
         </>
