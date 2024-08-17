@@ -1,4 +1,4 @@
-import {IconBox, ImageView, Rating} from "@/components";
+import { ImageView, Rating} from "@/components";
 import Link from "next/link";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
@@ -11,7 +11,9 @@ export function SimpleProductCardData({data}: Props) {
 
     return (
         <>
-            <div className="mt-8 hidden group-hover:flex rounded-[5px] border-[1px] border-green-200 w-max absolute top-[100px] left-[50%] translate-x-[-50%] bg-white productAction cursor-pointer">
+            {/*
+                <div
+                className="mt-8 hidden group-hover:flex rounded-[5px] border-[1px] border-green-200 w-max absolute top-[100px] left-[50%] translate-x-[-50%] bg-white productAction cursor-pointer">
                 <div className="p-2.5 border-r-[1px] border-r-green-200 hover:bg-green-150">
                     <IconBox icon={"icon-heart text-brand1 text-green-200"} size={15}/>
                 </div>
@@ -22,6 +24,7 @@ export function SimpleProductCardData({data}: Props) {
                     <IconBox icon={"icon-eye"} size={15}/>
                 </div>
             </div>
+            */}
             <ImageView src={data.attributes.thumbnail?.data?.attributes.url} alt={'product'} width={210} height={168}
                        classname={"m-auto w-full aspect-[3/2] mb-[28px]"}/>
             <div className="flex flex-col gap-2">

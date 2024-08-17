@@ -2,8 +2,6 @@ import {Badge, IconBox, SimpleProductCardData} from "@/components";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
 import {formatNumberWithCommas} from "@/utils/formatNumber";
-import {useContext} from "react";
-import basketContext from "@/store/BasketContext";
 import {twMerge} from "tailwind-merge";
 import {useBasket} from "@/hooks/use-basket";
 
@@ -18,12 +16,12 @@ export function SimpleProductCardWithSold({data, customCardClass}: Props) {
     // const basket = useContext(basketContext)
     // const currentProductInBasket = basket.getItem(data.id)
 
-    const {basketItems, addItem, getItem, updateItem} = useBasket()
+    const {addItem, getItem, updateItem} = useBasket()
 
     const basketItem = getItem(data.id)
 
     return (
-        <div className={twMerge("group border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-2 sm:p-4 xl:pb-5 lg:pt-[65px] h-full", customCardClass)}>
+        <div className={twMerge("group border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-2 sm:p-4 xl:pb-5 lg:pt-[65px] h-full w-fit overflow-hidden", customCardClass)}>
             { data.attributes.label && <Badge badge={data.attributes.label} sale_price={data.attributes.sell_price} price={data.attributes.price}/>}
 
             <SimpleProductCardData data={data}/>

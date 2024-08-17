@@ -1,8 +1,7 @@
 import {IconBox} from "@/components";
 import {EntityType} from "@/types";
 import {ProductType} from "@/types/api/Product";
-import React, {useContext} from "react";
-import BasketContext from "@/store/BasketContext";
+import React from "react";
 import {useBasket} from "@/hooks/use-basket";
 
 interface Props {
@@ -32,7 +31,7 @@ export function ProductCardBtn({productData}: Props) {
                         }
                     </div> :
                     <button onClick={() => addItem(productData.id)}
-                            className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">Adds
+                            className="text-heading-sm text-green-200 border-[1px] rounded-lg bg-green-150 p-2 text-nowrap">Adds
                         +
                     </button>
             }

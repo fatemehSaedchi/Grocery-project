@@ -8,6 +8,7 @@ import {useRouter} from "next/router";
 import {useBasket} from "@/hooks/use-basket";
 import {AuthPageReplacer} from "@/components/pages/auth/AuthPageReplacer";
 import React from "react";
+import Link from "next/link";
 
 
 interface formData {
@@ -36,7 +37,6 @@ export default function Login() {
             }
         })
     }
-
 
 
     return (
@@ -76,38 +76,44 @@ export default function Login() {
                                errors={errors}  {...{placeholder: 'Your password *'}}/>
 
 
-                        {
-                            //     <div className="flex gap-5">
-                            //     <input type="number" placeholder="Security code *" aria-label="securityCode"
-                            //            className="text-medium border rounded-xl px-9 py-6 w-full mb-6"/>
-                            //     <div
-                            //         className="rounded-xl w-[115px] h-[65px] bg-green-150 flex items-center justify-center">
-                            //         <p className="text-heading4"><span className="text-[#3F7C35]">6</span><span
-                            //             className="text-[#7E396B]">8</span><span className="text-[#ADA05B]">8</span><span
-                            //             className="text-[#C14A83]">6</span></p>
-                            //     </div>
-                            // </div>
-                        }
+                        {/*
+                            <div className="flex gap-5">
+                                <input type="number" placeholder="Security code *" aria-label="securityCode"
+                                       className="text-medium border rounded-xl px-9 py-6 w-full mb-6"/>
+                                <div
+                                    className="rounded-xl w-[115px] h-[65px] bg-green-150 flex items-center justify-center">
+                                    <p className="text-heading4">
+                                        <span className="text-[#3F7C35]">6</span>
+                                        <span className="text-[#7E396B]">8</span>
+                                        <span className="text-[#ADA05B]">8</span>
+                                        <span className="text-[#C14A83]">6</span>
+                                    </p>
+                                </div>
+                            </div>
+                        */}
 
                         <div className="flex justify-between items-center mb-10">
 
-                            {
-                                // <div className="flex gap-2 items-center">
-                                //     <label className="flex items-center cursor-pointer">
-                                //         <input type="checkbox" name="checkbox" checked
-                                //                className="w-[18px] h-[18px] mr-3 cursor-pointer"/>
-                                //         <span className="text-small text-green-200">Remember me</span>
-                                //         <i className="fa-solid fa-user"></i>
-                                //     </label>
-                                // </div>
-                            }
+                            {/*
+                                <div className="flex gap-2 items-center">
+                                    <label className="flex items-center cursor-pointer">
+                                        <input type="checkbox" name="checkbox" checked
+                                               className="w-[18px] h-[18px] mr-3 cursor-pointer"/>
+                                        <span className="text-small text-green-200">Remember me</span>
+                                        <i className="fa-solid fa-user"></i>
+                                    </label>
+                                </div>
+                            */}
 
-                            <AuthPageReplacer route={'forgotPassword'}>
-                                <p className="text-heading-sm text-gray-400 cursor-pointer">Forgot password?</p>
-                            </AuthPageReplacer>
+                            {/*<AuthPageReplacer route={'forgotPassword'}>*/}
+                            <Link href={'/404'} className="text-heading-sm text-gray-400 cursor-pointer">Forgot
+                                password?</Link>
+                            {/*</AuthPageReplacer>*/}
                         </div>
 
-                        <button className="h-16 px-11 bg-blue-300 text-white rounded-xl font-quickSand" type={"submit"}>Log in</button>
+                        <button className="h-16 px-11 bg-blue-300 text-white rounded-xl font-quickSand"
+                                type={"submit"}>Log in
+                        </button>
                     </div>
                 </form>
             </section>
@@ -115,6 +121,7 @@ export default function Login() {
             {
                 // <!-- Login End -->
             }
+
 
         </>
     )

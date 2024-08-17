@@ -15,7 +15,7 @@ export function SimpleProductCard({data, customCardClass}: Props) {
     const price = formatNumberWithCommas({number: data.attributes.price})
 
     return (
-        <div className={twMerge("group border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-2 sm:p-4 xl:pb-5 lg:pt-[65px] h-full", customCardClass)}>
+        <div className={twMerge("group border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-4 sm:p-4 xl:pb-5 lg:pt-[65px] h-max w-full", customCardClass)}>
             {data.attributes.label && <Badge badge={data.attributes.label} sale_price={data.attributes.sell_price} price={data.attributes.price}/>}
 
             <SimpleProductCardData data={data}/>
